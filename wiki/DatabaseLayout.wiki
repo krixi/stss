@@ -1,0 +1,39 @@
+#Possible DB Layout
+
+{{{
+ CREATE TABLE `STSS`.`User` (
+`userID` INT NOT NULL ,
+`email` VARCHAR( 40 ) NOT NULL ,
+`firstname` VARCHAR( 40 ) NOT NULL ,
+`lastname` VARCHAR( 40 ) NOT NULL ,
+`role` TINYINT NOT NULL ,
+`lastlogin` DATE NOT NULL
+) ENGINE = InnoDB 
+
+ CREATE TABLE `STSS`.`events` (
+`eventID` INT NOT NULL ,
+`name` VARCHAR( 40 ) NOT NULL ,
+`date` DATE NOT NULL
+) ENGINE = InnoDB 
+
+ CREATE TABLE `STSS`.`seats` (
+`eventID` INT NOT NULL ,
+`category` VARCHAR( 40 ) NOT NULL ,
+`price` FLOAT NOT NULL ,
+`amount` INT NOT NULL
+) ENGINE = InnoDB COMMENT = 'category is premium or normal' 
+
+ CREATE TABLE `STSS`.`purchases` (
+`eventID` INT NOT NULL ,
+`userID` INT NOT NULL ,
+`seatID` INT NOT NULL ,
+`category` VARCHAR( 40 ) NOT NULL ,
+`purchaseDate` DATETIME NOT NULL
+) ENGINE = InnoDB 
+
+}}}
+
+*VIEW availableSeats*
+composed of eventID, category from seats and colums sold (seats sold) and available (seats.amount - sold)
+
+have to figure out how to elegantly create this view with mysql :)
