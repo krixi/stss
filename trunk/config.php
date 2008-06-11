@@ -8,6 +8,10 @@
   * @author Michael Prilop
   */
 
+// Timeout in minutes
+define("USER_TIMEOUT", 5);
+
+
   /**
   * LANGUAGE_DEFAULT
   *
