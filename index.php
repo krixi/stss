@@ -2,6 +2,7 @@
 
 
 require_once('config.php');
+require_once('includes/auth.php');
 
 session_start();
 
@@ -13,7 +14,7 @@ if (isset($_GET['module'])) {
         $event = $_GET['event'];
     }
     else {
-        $event = 'default';
+        $event = 'welcome';
     }
 
   //set language to users choice or default
