@@ -3,25 +3,32 @@
   /**
   * config.php
   *
-  * @author Joe Stump <joe@joestump.net>
-  * @copyright Joe Stump <joe@joestump.net> 
-  * @license http://www.opensource.org/licenses/gpl-license.php
-  * @package Framework
-  * @filesource
+  * configure all global constants here only
+  *
+  * @author Michael Prilop
   */
 
   /**
-  * FR_BASE_PATH
+  * LANGUAGE_DEFAULT
+  *
+  * Define default language
+  *
+  * @author Michael Prilop
+  * @global string LANGUAGE_DEFAULT default language
+  */
+
+  define('LANGUAGE_DEFAULT','en');
+
+  /**
+  * BASE_PATH
   *
   * Dynamically figure out where in the filesystem we are located.
   *
-  * @author Joe Stump <joe@joestump.net>
+  * @author Michael Prilop
   * @global string FR_BASE_PATH Absolute path to our framework
   */
-  
-  //just in case its a windows system
-  $base_path = str_replace('\\','/',dirname(__FILE__));
-  define('FR_BASE_PATH',$base_path);
+
+  define('BASE_PATH',dirname(__FILE__));
 
   /**
   * FR_DSN
