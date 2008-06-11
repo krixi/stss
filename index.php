@@ -1,52 +1,68 @@
 <?php
 
 
-  require_once('config.php');
+require_once('config.php');
+
+session_start();
 
 
+//check if module and event is set properly
+if (isset($_GET['module'])) {
+    $module = $_GET['module'];
+    if (isset($_GET['event'])) {
+        $event = $_GET['event'];
+    }
+    else {
+        $event = 'default';
+    }
 
-  if (isset($_GET['module'])) {
-      $module = $_GET['module'];
-      if (isset($_GET['event'])) {
-          $event = $_GET['event'];
-      } else {
-          $event = 'default';
-      }
+  //set language to users choice or default
+  if (isset($_SESSION['language'])) {
+    $language = $_SESSION['language'];
+  }
+  else {
+    $language = LANGUAGE_DEFAULT;
+  }
 
 
-
-      $actionFile = FR_BASE_PATH.'/modules/'.$module.'/'.$event.'.model.php';
-      
-      //check language
-      $lang = 'en'; //from session in future
-      $viewFile = FR_BASE_PATH.'/views/'.$lang.'/'.$module.'/'.$event.'.view.php';
+    $eventFile = BASE_PATH.'/modules/'.$module.'/'.$event.'.model.php';
+    
+    //select View based on event and language settings
+    $viewFile = BASE_PATH.'/views/'.$language.'/'.$module.'/'.$event.'.view.php';
        
+      
+          
+     
+     //including model and view functions
+     if (file_exists($eventFile)) {
+          include($eventFile);
+          
        if (file_exists($viewFile)) {
           include($viewFile);
-          }
-          else {die('view not found');}
-     
-     if (file_exists($actionFile)) {
-          include($actionFile);
-
+          
                   //check if authenticated
                   if (authenticate()) {
-                      try {
-                          //get results from event
-                          
-                          
-                          display(result());
-
-                       } catch (Exception $error) {
-                          die($error->getMessage());
-                      }
-                  } else {
+                    
+                    //let the model do the work
+                    $result = work();
+                    
+                    //display the results
+                    display($result);
+                    
+                  }
+                  else {
                       die("You do not have access to the requested page!");
                   }
-      } else {
-          die("Could not find: $actionFile");        
+          }
+          else {
+            die("Could not find: $viewFile");
+          }
       }
-  } else {
+      else {
+          die("Could not find: $eventFile");        
+      }
+  }
+  else {
       die("A valid module was not specified");
   }
 
