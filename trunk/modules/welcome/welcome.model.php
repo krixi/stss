@@ -1,7 +1,9 @@
 <?php
 
 
-function authenticate () {return true;}
+function authenticate () {
+  return authNO();
+  }
 
 function work() {
 
