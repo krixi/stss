@@ -1,9 +1,0 @@
-<Files ~ "\.(inc)$">
-  deny from all
-</Files>
-
-<Files db.inc>
-  deny from all
-</Files>
-
-ErrorDocument 500 /error_pages/err500.html
