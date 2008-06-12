@@ -17,12 +17,16 @@ if (isset($_GET['module'])) {
 	$module = DEFAULT_MODULE;
 	$action = DEFAULT_ACTION;
 }
-  
-//Initialize session if not done so already
-if (!isset($_SESSION['login'])) {
+
+function initSession() {
 	$_SESSION['login'] = false;
 	$_SESSION['admin'] = false;
 	$_SESSION['lang'] = LANGUAGE_DEFAULT;
+}
+  
+//Initialize session if not done so already
+if (!isset($_SESSION['login'])) {
+	initSession();
 }
 
 // initialize file paths to be used for requested action

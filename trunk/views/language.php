@@ -38,6 +38,12 @@ function getEnglishString($desiredString) {
 	case LOGOUT:
 		return "Logout";
 	break;
+	case INVALID_USERNAME:
+		return "Invalid Username";
+	break;
+	case INVALID_PASS:
+		return "Invalid Password";
+	break;
 	default:
 		return "IMPLEMENT ME";
 	break;

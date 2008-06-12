@@ -49,20 +49,6 @@ printf("\n");
 <br style="clear: left" /> 
 <div class="content-container">
 <?php
-// If the timeout expired, echo that as the first bit of content.
-$message = '';
-if (isset($_SESSION['errMessage'])) {
-	$message = $_SESSION['errMessage'];
-	unset($_SESSION['errMessage']);
-}
-printf("<div id=\"error_txt\" class=\"error\">%s</div>\n", $message);
-
-$message = '';
-if (isset($_SESSION['message'])) {
-	$message = $_SESSION['message'];
-	unset($_SESSION['message']);
-}
-printf("<div id=\"message_txt\" class=\"message\">%s</div>\n", $message);
 printf("\n");
 }// end of function endHeader
 

@@ -3,7 +3,7 @@
 
 
 function authenticate () {
-  return authNO();
+	return authNO();
 }
 
 function work() {
