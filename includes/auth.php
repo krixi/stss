@@ -21,10 +21,8 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$userEmail) 
 		trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);
 		return false;
 	}
-	
-	//$digest = sha1($pass);
-  $digest = $pass;
-		
+
+
   
   if (is_numeric($loginName)) {
     //look for userID in DB
@@ -36,17 +34,21 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$userEmail) 
   }
     
 	// Using SQL injection protection.
-  $sql_query = "SELECT user.userID, user.email, user.role
+  $sql_query = "SELECT user.userID, user.email, user.role, pwd.pwdHash, pwd.salt
                       FROM user , pwd
-                      WHERE user.userID = pwd.userID AND ".$selectUser." AND pwd.pwdHash = ?";
+                      WHERE user.userID = pwd.userID AND ".$selectUser;
 	//$sql_query = "SELECT admin, id FROM user, pwd WHERE username = ? AND password = ?";
 	
 	if ($stmt = $db_handle->prepare($sql_query)) {
-		$stmt->bind_param('ss', $loginName, $digest);
+		$stmt->bind_param('ss', $loginName);
 		$stmt->execute();
-		$stmt->bind_result($userID, $userEmail, $isAdmin);
+		$stmt->bind_result($userID, $userEmail, $isAdmin, $pwdHash, $salt);
 		$stmt->fetch();
 		
+    $digest = sha1($pass.$salt); 
+    
+    //check for hash = digest and userID exists and ....
+    
 		if ($userID != '') {
 			$setUserID = $userID;
 			if ($isAdmin == '1') {
