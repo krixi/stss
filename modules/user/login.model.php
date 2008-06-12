@@ -9,7 +9,11 @@ function work() {
 	$user = '';
 	$pass = '';
 	
-	if (!isset($_POST['username'])) {
+	$loginName = $_POST['username'];
+  $pass = $_POST['password'];
+
+/*  
+  if (!isset($_POST['username'])) {
 		$result['userErr'] = INVALID_USERNAME;
 	} else if (!verifyUser($_POST['username'])) {
 		$result['userErr'] = INVALID_USERNAME;
@@ -25,11 +29,12 @@ function work() {
 	} else {
 		$pass = $_POST['password'];
 	}
+*/
 	
 	// Uses database connection to populate userID, admin status.
-	if (authenticateUser($user, $pass, $_SESSION['userID'], $_SESSION['admin'])) {
+	if (authenticateUser($loginName, $pass, $_SESSION['userID'], $_SESSION['admin'])) {
 		$_SESSION['login'] = true;
-		$_SESSION['user'] = $user;
+		$_SESSION['user'] = $loginName; //email
 	}
 	
 	return $result;
