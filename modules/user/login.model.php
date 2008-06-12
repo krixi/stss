@@ -32,9 +32,8 @@ function work() {
 */
 	
 	// Uses database connection to populate userID, admin status.
-	if (authenticateUser($loginName, $pass, $_SESSION['userID'], $_SESSION['admin'])) {
+	if (authenticateUser($loginName, $pass, $_SESSION['userID'], $_SESSION['admin'], $_SESSION['user'] )) {
 		$_SESSION['login'] = true;
-		$_SESSION['user'] = $loginName; //email
 	}
 	
 	return $result;
