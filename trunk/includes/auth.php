@@ -9,13 +9,13 @@ function authNO() {
  * verify the username and password combo from the database.
  * returns true if the user and password combo were
  ****************************/
-function authenticateUser($loginName, $pass, &$setUserID, &$admin) {
+function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$userEmail) {
 	
 	if (!isset($loginName) || !isset($pass)) {
 		return false;
 	}
 	
-	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, 'STSS');
+	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
 	if (mysqli_connect_errno()) {	
 		trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);

@@ -4,8 +4,7 @@ include BASE_PATH."/views/common.php";
 
 function display($result) {
 	showHeader(INDEX);
-	echo 'welcome';
-	echo $result['isAdmin'];
+	echo 'welcome '.$_SESSION['user'];
 	showFooter();
 }
 
