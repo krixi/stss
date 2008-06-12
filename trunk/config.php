@@ -44,21 +44,12 @@ define('LANGUAGE_DEFAULT', ENGLISH);
 $base_path = str_replace('\\','/',dirname(__FILE__));
 define('BASE_PATH',$base_path);
 
-/**
-* DSN
-*
-* This is a DSN formatted according to PEAR DB's specifications. 
-*
-* @author Joe Stump <joe@joestump.net>
-* @global string DSN PEAR DB compatible DSN 
-* @link http://pear.php.net/package/DB
-*/
-define('DSN','mysql://root@localhost/framework');
+
 // Database connection info.
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "admin");
-
+define("DB_NAME", "stss");
 
 // Constants to represent strings which need displaying in multiple languages,
 // Used when calling getString() in language.php and showHeader/endHeader from common.php

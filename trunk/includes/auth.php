@@ -9,32 +9,46 @@ function authNO() {
  * verify the username and password combo from the database.
  * returns true if the user and password combo were
  ****************************/
-function authenticateUser($user, $pass, &$userID, &$admin) {
+function authenticateUser($loginName, $pass, &$setUserID, &$admin) {
 	
-	if (!isset($user) || !isset($pass)) {
+	if (!isset($loginName) || !isset($pass)) {
 		return false;
 	}
 	
-	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, 'users');
+	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, 'STSS');
 	
 	if (mysqli_connect_errno()) {	
 		trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);
 		return false;
 	}
 	
-	$digest = sha1($pass);
+	//$digest = sha1($pass);
+  $digest = $pass;
 		
+  
+  if (is_numeric($loginName)) {
+    //look for userID in DB
+    $selectUser = 'user.userID = ?';
+  }
+  else {
+    //look for email in DB
+    $selectUser = 'user.email = ?';
+  }
+    
 	// Using SQL injection protection.
-	$sql_query = "SELECT admin, id FROM users.accounts WHERE username = ? AND password = ?";
+  $sql_query = "SELECT user.userID, user.email, user.role
+                      FROM user , pwd
+                      WHERE user.userID = pwd.userID AND ".$selectUser." AND pwd.pwdHash = ?";
+	//$sql_query = "SELECT admin, id FROM user, pwd WHERE username = ? AND password = ?";
 	
 	if ($stmt = $db_handle->prepare($sql_query)) {
-		$stmt->bind_param('ss', $user, $digest);
+		$stmt->bind_param('ss', $loginName, $digest);
 		$stmt->execute();
-		$stmt->bind_result($isAdmin, $id);
+		$stmt->bind_result($userID, $userEmail, $isAdmin);
 		$stmt->fetch();
 		
-		if ($id != '') {
-			$userID = $id;
+		if ($userID != '') {
+			$setUserID = $userID;
 			if ($isAdmin == '1') {
 				$admin = true;
 			}
