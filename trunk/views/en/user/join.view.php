@@ -18,8 +18,7 @@ function display($data) {
 			}
 		}
 ?>
-<!--<script type="text/javascript" src="<?php echo BASE_PATH; ?>/views/javascripts/verify.js" ></script>
-<script type="text/javascript" src="<?php echo BASE_PATH; ?>/views/javascripts/ajax_verify.js"> </script>-->
+<script type="text/javascript" src="views/javascripts/verify.js" ></script>
 <form id="input_form" action="index.php?module=user&action=join" method="post" name="joinForm" onsubmit="return verifyForm(document.joinForm);">
 <table>
 <tr>
@@ -28,7 +27,7 @@ function display($data) {
 </td>
 <td>
 <input class="textinput" id="f_name" name="f_name" type="text" 
-size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['f_name'])) printf("value=\"%s\"", $data['f_name']);?> />
+size="30" onkeyup="realtime_verify(this);" <?php if (isset($data['f_name'])) printf("value=\"%s\"", $data['f_name']);?> />
 </td>
 <td>
 <span class="error" id="f_nameDisplay"></span>
@@ -40,7 +39,7 @@ size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['f_name'])) printf(
 </td>
 <td>
 <input class="textinput" id="l_name" name="l_name" type="text" 
-size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['l_name'])) printf("value=\"%s\"", $data['l_name']);?> />
+size="30" onkeyup="realtime_verify(this);" <?php if (isset($data['l_name'])) printf("value=\"%s\"", $data['l_name']);?> />
 </td>
 <td>
 <span class="error" id="l_nameDisplay"></span>
@@ -52,7 +51,7 @@ size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['l_name'])) printf(
 </td>
 <td>
 <input class="textinput" id="email" name="email" type="text" 
-size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['email'])) printf("value=\"%s\"", $data['email']);?> />
+size="30" onkeyup="realtime_verify(this);" <?php if (isset($data['email'])) printf("value=\"%s\"", $data['email']);?> />
 </td>
 <td>
 <span class="error" id="emailDisplay"></span>
@@ -63,7 +62,7 @@ size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['email'])) printf("
 <span class="display_txt">Password:</span>
 </td>
 <td>
-<input class="textinput" id="password1" name="password1" type="password" size="30" onkeyup="ajax_verify(this);" />
+<input class="textinput" id="password1" name="password1" type="password" size="30" onkeyup="realtime_verify(this);" />
 </td>
 <td>
 <span class="error" id="password1Display"></span>
@@ -74,7 +73,7 @@ size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['email'])) printf("
 <span class="display_txt">Verify Password:</span>
 </td>
 <td>
-<input class="textinput" id="password2" name="password2" type="password" size="30" onkeyup="ajax_verify(this);" />
+<input class="textinput" id="password2" name="password2" type="password" size="30" onkeyup="realtime_verify(this);" />
 </td>
 <td>
 <span class="error" id="password2Display"></span>
@@ -94,6 +93,8 @@ size="30" onkeyup="ajax_verify(this);" <?php if (isset($data['email'])) printf("
 	document.joinForm.password1.isMandatory = true;
 	document.joinForm.password2.isMandatory = true;
 	document.joinForm.email.isEmail = true;
+	document.joinForm.f_name.isName = true;
+	document.joinForm.l_name.isName = true;
 	document.joinForm.email.description = "E-Mail address";
 	document.joinForm.f_name.description = "First Name";
 	document.joinForm.l_name.description = "Last Name";

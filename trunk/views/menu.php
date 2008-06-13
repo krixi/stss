@@ -25,10 +25,9 @@ if ($_SESSION['login'] == false) {
 	printf("<li%s><a onclick=\"new Effect.toggle('login_form','appear'); return false;\" title=\"%s\">%s</a></li>\n",
 		($page == LOGIN) ? $currentText : '', getString(LOGIN), getString(LOGIN));
 ?>
-<script type="text/javascript" src="<?php echo BASE_PATH;?>/views/javascripts/verify.js" ></script>
 <div id="login_form" style="display:none;">
 <div>
-<form id="input_form" action="index.php?module=user&action=login" method="post" name="login" onsubmit="return verifyForm(this);">
+<form id="input_form" action="index.php?module=user&action=login" method="post" name="login">
 
 <input class="textinput" id="username" name="username" type="text" value="<?php echo getString(USERNAME); ?>"
 onblur="if (this.value == '') this.value = '<?php echo getString(USERNAME); ?>';"
@@ -39,16 +38,6 @@ onblur="if (this.value == '') this.value = '<?php echo getString(PASSWORD); ?>';
 onfocus="if (this.value == '<?php echo getString(PASSWORD); ?>') this.value = '';"/>
 
 <input class="submit" name="submit" type="submit" value="submit" />
-
-<script type="text/javascript">
-
-	document.login.username.isMandatory = true;
-	document.login.password.isMandatory = true;
-	document.login.username.isUsername = true;
-	document.login.username.description = "Username";
-	document.login.password.description = "Password";
-	
-</script>
 </form>
 </div>
 </div>
