@@ -18,12 +18,12 @@ function work() {
 		return false;
 	}
 
-  $query = 'SELECT * FROM events, seats WHERE events.eventID = seats.eventID AND events.eventID = '.$eventID;
+  $query = 'SELECT *, (availableseats.amount - availableseats.sold) AS available FROM events, availableseats 
+                WHERE events.eventID = availableseats.eventID AND events.eventID = '.$eventID;
 
   $sql_result = $db_handle->query($query);
     
   while($row = $sql_result->fetch_array()) {
-    //$result[] = array("eventID" => $row['eventID'], "name" => $row['name'], "Date" => $row['date']);
     $result[] = $row;
   }
 

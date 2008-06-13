@@ -13,23 +13,25 @@ function work() {
 	
 	if (mysqli_connect_errno()) {	
 		trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);
-		return $result;
+		return false;
 	}
   
-  //selects all events and sums up available seats
-  $sql  = 'SELECT events.eventID, events.name, events.date, SUM(seats.amount) AS amount_total '
-        . ' FROM events, seats WHERE events.eventID = seats.eventID'
-        . ' GROUP BY events.eventID';
+  $sql = 'SELECT events.eventID, events.name, events.date, '
+          . ' SUM( seats.amount ) AS amount_total, '
+          . ' (availableseats.amount - availableseats.sold ) AS available'
+          . ' FROM events, seats, availableseats'
+          . ' WHERE events.eventID = availableseats.eventID '
+          . ' AND seats.eventID = events.eventID'
+          . ' AND seats.category = availableseats.category'
+          . ' GROUP BY events.eventID';
 
   $sql_result = $db_handle->query($sql);
     
   while($row = $sql_result->fetch_array()) {
-    //$result[] = array("eventID" => $row['eventID'], "name" => $row['name'], "Date" => $row['date']);
     $result[] = $row;
   }
 
   $sql_result->close();
-  $db_handle->close();
   
   return $result;
 }
