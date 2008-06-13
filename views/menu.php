@@ -9,8 +9,10 @@ it contains the string to be used as the page title
 $currentText = " id=\"current\"";
 
 printf("<ul>\n");
+
 printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", ($page == INDEX) ? $currentText : '', getString(INDEX), getString(INDEX));
 
+printf("<li%s><a href=\"index.php?module=event&action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", ($page == EVENTS) ? $currentText : '', getString(EVENTS), getString(EVENTS));
 
 if ($_SESSION['admin'] == true && $_SESSION['login'] == true) {
 	printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", ($page == ADMIN) ? $currentText : '', getString(ADMIN), getString(ADMIN));
@@ -55,6 +57,8 @@ onfocus="if (this.value == '<?php echo getString(PASSWORD); ?>') this.value = ''
 	printf("<li%s><a href=\"index.php?module=user&action=logout\" title=\"%s\">%s</a></li>", 
 		($page == LOGOUT) ? $currentText : '', getString(LOGOUT), getString(LOGOUT));
 } // end "if logged in" statement
+
+
 
 printf("</ul>\n");
 ?>

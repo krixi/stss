@@ -18,9 +18,9 @@ function display($data) {
 			}
 		}
 ?>
-<script type="text/javascript" src="<?php echo BASE_PATH; ?>/views/javascripts/verify.js" ></script>
-<script type="text/javascript" src="<?php echo BASE_PATH; ?>/views/javascripts/ajax_verify.js"> </script>
-<form id="input_form" action="/index.php?module=user&action=join" method="post" name="joinForm" onsubmit="return verifyForm(document.joinForm);">
+<!--<script type="text/javascript" src="<?php echo BASE_PATH; ?>/views/javascripts/verify.js" ></script>
+<script type="text/javascript" src="<?php echo BASE_PATH; ?>/views/javascripts/ajax_verify.js"> </script>-->
+<form id="input_form" action="index.php?module=user&action=join" method="post" name="joinForm" onsubmit="return verifyForm(document.joinForm);">
 <table>
 <tr>
 <td>

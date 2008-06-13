@@ -8,7 +8,7 @@ function display($data) {
 	if (is_array($data) && isset($data['login'])) {
 		
 		if ($data['login'] == true) {
-			header("Location: /index.php");
+			header("Location: index.php");
 			exit;
 		} else { // login == false, check for errors
 			showHeader(LOGIN);		
@@ -21,7 +21,7 @@ function display($data) {
 		}
 	} else {
 		trigger_error("Data not an array: login.view");
-		header("Location: /index.php");
+		header("Location: index.php");
 	}
 }
 
