@@ -16,16 +16,21 @@ function work() {
 		return false;
 	}
   
-  //selects only events taking place after servertime
-  $sql  = 'SELECT events.eventID, events.name, events.date, SUM(seats.amount) AS amount_total '
-        . ' FROM events, seats WHERE events.eventID = seats.eventID AND events.date > NOW()'
-        . ' GROUP BY events.eventID';
+     
+  $sql = 'SELECT events.eventID, events.name, events.date, '
+          . ' SUM( seats.amount ) AS amount_total, '
+          . ' (availableseats.amount - availableseats.sold ) AS available'
+          . ' FROM events, seats, availableseats'
+          . ' WHERE events.eventID = availableseats.eventID '
+          . ' AND seats.eventID = events.eventID'
+          . ' AND seats.category = availableseats.category'
+          . ' AND events.date > NOW( )'
+          . ' GROUP BY events.eventID';
 
   $sql_result = $db_handle->query($sql);
     
   while($row = $sql_result->fetch_array()) {
-    //$result[] = array("eventID" => $row['eventID'], "name" => $row['name'], "Date" => $row['date']);
-    $result[] = $row;
+       $result[] = $row;
   }
 
   $sql_result->close();
