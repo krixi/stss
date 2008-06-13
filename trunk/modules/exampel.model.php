@@ -10,9 +10,11 @@ function authenticate () {
   }
 
 function work() {
+  $result = array();
   //Do your work and
   //return $result = array();
   //with the results
+  return $result;
 }
 
 

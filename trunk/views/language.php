@@ -20,7 +20,10 @@ function getEnglishString($desiredString) {
 	case INDEX:
 		return "Index";
 	break;
-	case LOGIN:
+  case EVENTS:
+		return "Events";
+	break;
+  case LOGIN:
 		return "Login";
 	break;
 	case JOIN:

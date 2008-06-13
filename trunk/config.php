@@ -60,6 +60,7 @@ define("ADMIN", 4);
 define("USERNAME", 5);
 define("PASSWORD", 6);
 define("LOGOUT", 7);
+define("EVENTS", 18);
 
 // Define error message strings
 define("USERNAME_INVALID", 8);
