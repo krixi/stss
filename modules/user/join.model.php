@@ -115,8 +115,8 @@ function work() {
 			}
 		}
 		
-		// If it didn't reach the part that sets added to true, then don't redirect to the index in the display
-		if (!$result['added']) {
+		// If it didn't reach the part that sets added to true but the result was verified then a query failed somewhere.
+		if (!$result['added'] && $result['verified']) {
 			$result['errors'][] = QUERY_INVALID;
 		}
 		$db_handle->close();

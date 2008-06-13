@@ -6,23 +6,10 @@ session_start();
 require_once('config.php');
 require_once('includes/auth.php');
 
-if (isset($_GET['module'])) {
-	$module = $_GET['module'];
-	if (isset($_GET['action'])) {
-		$action = $_GET['action'];
-	} else {
-		$action = DEFAULT_ACTION;
-	}
-} else {
-	$module = DEFAULT_MODULE;
-	$action = DEFAULT_ACTION;
-}
-
 
 /*
  * Initialize session variables to be freely used by included pages without generating notices.
  * Defined here so it may be used by logout.model
- * 
  */
 function initSession() {
 	$_SESSION['login'] = false;
@@ -33,6 +20,18 @@ function initSession() {
 //Initialize session if not done so already
 if (!isset($_SESSION['login'])) {
 	initSession();
+}
+
+if (isset($_GET['module'])) {
+	$module = $_GET['module'];
+	if (isset($_GET['action'])) {
+		$action = $_GET['action'];
+	} else {
+		$action = DEFAULT_ACTION;
+	}
+} else {
+	$module = DEFAULT_MODULE;
+	$action = DEFAULT_ACTION;
 }
 
 // initialize file paths to be used for requested action

@@ -14,8 +14,8 @@ function isAlpha(word) {
 	return evaluator.test(word);
 }
 
-function isUsername(word) {
-	evaluator = /^[a-z0-9]+(_?[a-z0-9]+)*$/i;
+function isName(word) {
+	evaluator = /^[a-z]+$/i;
 	return evaluator.test(word);
 }
 
@@ -45,15 +45,15 @@ function checkAlpha(element) {
 
 function checkEmail(element) {
 	if (!isEmail(element.value)) {
-		alert(element.description + " must be in the form: xxx@xxx.xx and not contain underscores.");
+		alert(element.description + " must be in a valid email format.");
 		return false;
 	}
 	return true;
 }
 
-function checkUsername(element) {
-	if (!isUsername(element.value)) {
-		alert(element.description + " must be alpha-numeric with only 1 consecutive underscore.");
+function checkName(element) {
+	if (!isName(element.value)) {
+		alert(element.description + " must be one word consisting of alphabetical characters.");
 		return false;
 	}
 	return true;
@@ -65,7 +65,7 @@ function verifyElement(element) {
 			return false;
 		}
 		
-		if (element.isUsername && !checkUsername(element)) {
+		if (element.isName && !checkName(element)) {
 			return false;
 		}
 		
@@ -85,3 +85,34 @@ function verifyForm(form) {
 	}
 	return true;
 }
+
+function realtime_verify(element) {
+	var validTxt = "<img src=\"views/images/check.gif\">";
+	var invalidTxt = "<img src=\"views/images/x.gif\">";
+	
+	// assume true, set to false if error occurrs
+	var valid = true;
+	
+	if (element.type == "text" || element.type == "password") {
+		if (element.isMandatory && isBlank(element.value)) {
+			valid = false;
+		}
+		
+		if (element.isName && !isName(element.value)) {
+			valid = false;
+		}
+		
+		if (element.isEmail && !isEmail(element.value)) {
+			valid = false;
+		}
+	}
+	
+	if (element.value.length == 0) {
+		$(element.id+"Display").innerHTML = '';
+	} else if (valid) {
+		$(element.id+"Display").innerHTML = validTxt;
+	} else {
+		$(element.id+"Display").innerHTML = invalidTxt;
+	}
+}
+

@@ -7,6 +7,10 @@ function authUser() {
 	return $_SESSION['login'];
 }
 
+function authAdmin() {
+	return ($_SESSION['login'] && $_SESSION['admin']);
+}
+
 /****************************
  * authenticateUser 
  *

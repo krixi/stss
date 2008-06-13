@@ -13,7 +13,7 @@ function work() {
 	
 	if (mysqli_connect_errno()) {	
 		trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);
-		return false;
+		return $result;
 	}
   
   //selects all events and sums up available seats
@@ -29,6 +29,7 @@ function work() {
   }
 
   $sql_result->close();
+  $db_handle->close();
   
   return $result;
 }
