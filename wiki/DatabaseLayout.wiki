@@ -29,16 +29,20 @@
 `seatID` INT NOT NULL ,
 `category` VARCHAR( 40 ) NOT NULL ,
 `purchaseDate` DATETIME NOT NULL
-) ENGINE = InnoDB 
+) ENGINE = InnoDB;
 
  CREATE TABLE `stss`.`pwd` (
 `userID` INT NOT NULL ,
 `pwdHash` VARCHAR( 256 ) NOT NULL ,
 `salt` VARCHAR( 128 ) NOT NULL
-) ENGINE = InnoDB 
+) ENGINE = InnoDB;
+
+CREATE VIEW availableseats AS  SELECT purchases.eventID, purchases.category, seats.amount, COUNT( purchases.seatID ) AS sold
+FROM seats, purchases
+WHERE seats.eventID = purchases.eventID
+AND seats.category = purchases.category
+GROUP BY purchases.eventID, purchases.category;
 }}}
 
-*VIEW availableSeats*
-composed of eventID, category from seats and colums sold (seats sold) and available (seats.amount - sold)
 
-have to figure out how to elegantly create this view with mysql :)
+
