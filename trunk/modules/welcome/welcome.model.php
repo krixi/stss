@@ -8,8 +8,16 @@ function authenticate () {
 
 function work() {
 
-	return $result = array('user' => 'michael', 'isAdmin' => true);
+	$result = array();
+	
+	$result['login'] = false;
+	if ($_SESSION['login'] == true) {
+		$result['user'] = $_SESSION['user'];
+		$result['userID'] = $_SESSION['userID'];
+		$result['login'] = true;
+	}
 
+	return $result;
 }
 
 ?>

@@ -3,6 +3,10 @@ function authNO() {
 	return true;
 }
 
+function authUser() {
+	return $_SESSION['login'];
+}
+
 /****************************
  * authenticateUser 
  *
@@ -15,9 +19,9 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 		return false;
 	}
   
-  $setUserID = '';
-  $setUserEmail = '';
-  $admin = '';
+	$setUserID = '';
+	$setUserEmail = '';
+	$admin = '';
 	
 	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	
@@ -25,48 +29,41 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 		trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);
 		return false;
 	}
-
-
+	
+	$digest = sha1($pass);
+		
   
-  if (is_numeric($loginName)) {
-    //look for userID in DB
-    $selectUser = 'user.userID = ?';
-  }
-  else {
-    //look for email in DB
-    $selectUser = 'user.email = ?';
-  }
+	if (is_numeric($loginName)) {
+		//look for userID in DB
+		$selectUser = 'user.userID = ?';
+	} else {
+		//look for email in DB
+		$selectUser = 'user.email = ?';
+	}
     
+
 	// Using SQL injection protection.
-  $sql_query = "SELECT user.userID, user.email, user.role, pwd.pwdHash, pwd.salt
+	$sql_query = "SELECT user.userID, user.email, user.role, pwd.pwdHash, pwd.salt
                       FROM user , pwd
                       WHERE user.userID = pwd.userID AND ".$selectUser;
 
+	
 	if ($stmt = $db_handle->prepare($sql_query)) {
 		$stmt->bind_param('s', $loginName);
 		$stmt->execute();
 		$stmt->bind_result($userID, $userEmail, $isAdmin, $pwdHash, $salt);
 		$stmt->fetch();
 		
-    //$digest = sha1($salt.$pass); 
-    $digest = $pass;
-    //check for hash = digest and userID exists and ....
-    //use crypt()
-    if ($digest == $pwdHash) {
-      if ($userID != '') {
-        $setUserID = $userID;
-        $setUserEmail = $userEmail;
-        if ($isAdmin == '1') {
-          $admin = true;
-        }
-      } else {
-        return false; //User does not exist
-      }
-    }
-    else {
-      return false; //provided password incorrect
+		
+		if ($userEmail != '') {
+			$setUserID = $userID;
+			$setUserEmail = $userEmail;
+			if ($isAdmin == '1') {
+				$admin = true;
+			}
+		} else {
+			return false;
 		}
-    
 		$stmt->free_result();
 		$stmt->close();
 	} else {

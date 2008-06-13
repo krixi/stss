@@ -3,6 +3,7 @@
 include BASE_PATH."/views/common.php";
 
 function display($data) {
+/*
 	
 	// Need to restart the session because it was just destroyed
 	initSession();
@@ -21,6 +22,9 @@ function display($data) {
 	//printf("New Session ID:%s<br />\n", $data['newID']);
 	
 	showFooter();
+*/
+
+header("Location: index.php");
 }
 
 ?>

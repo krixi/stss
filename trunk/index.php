@@ -18,6 +18,12 @@ if (isset($_GET['module'])) {
 	$action = DEFAULT_ACTION;
 }
 
+
+/*
+ * Initialize session variables to be freely used by included pages without generating notices.
+ * Defined here so it may be used by logout.model
+ * 
+ */
 function initSession() {
 	$_SESSION['login'] = false;
 	$_SESSION['admin'] = false;
@@ -30,39 +36,33 @@ if (!isset($_SESSION['login'])) {
 }
 
 // initialize file paths to be used for requested action
-
-
 $actionFile = BASE_PATH.'/modules/'.$module.'/'.$action.'.model.php';
-
 //select View based on action and language settings
 $viewFile = BASE_PATH.'/views/'.$_SESSION['lang'].'/'.$module.'/'.$action.'.view.php';
    
- //including model and view functions
- if (file_exists($actionFile)) {
-	  include($actionFile);
-	  
-   if (file_exists($viewFile)) {
-	  include($viewFile);
-	  
-			  //check if authenticated
-			  if (authenticate()) {
-				
-				//let the model do the work
-				$result = work();
-				
-				//display the results
-				display($result);
-				
-			  }
-			  else {
-				  die("You do not have access to the requested page!");
-			  }
-	  }
-	  else {
+//including model and view functions
+if (file_exists($actionFile)) {
+	include($actionFile);
+	
+	if (file_exists($viewFile)) {
+		include($viewFile);
+		
+		//check if authenticated
+		if (authenticate()) {
+		
+			//let the model do the work
+			$result = work();
+			
+			//display the results
+			display($result);
+		
+		} else {
+			die("You do not have access to the requested page!");
+		}
+	} else {
 		die("Could not find: $viewFile");
-	  }
-  }
-  else {
-	  die("Could not find: $actionFile");        
-  }
+	}
+} else {
+	die("Could not find: $actionFile");        
+}
 ?>

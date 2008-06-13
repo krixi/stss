@@ -38,11 +38,35 @@ function getEnglishString($desiredString) {
 	case LOGOUT:
 		return "Logout";
 	break;
-	case INVALID_USERNAME:
-		return "Invalid Username";
+	case USERNAME_INVALID:
+		return "Invalid Email";
 	break;
-	case INVALID_PASS:
+	case PASSWORD_INVALID:
 		return "Invalid Password";
+	break;
+	case PASSWORD_MISMATCH:
+		return "Passwords do not match.";
+	break;
+	case PASSWORD_BLANK:
+		return "Cannot have a blank password.";
+	break;
+	case USERNAME_BLANK:
+		return "Cannot have a blank Email.";
+	break;
+	case FIRSTNAME_BLANK:
+		return "Cannot have a blank First Name.";
+	break;
+	case LASTNAME_BLANK:
+		return "Cannot have a blank Last Name.";
+	break;
+	case USER_EXISTS:
+		return "Email already exists in database.";
+	break;
+	case QUERY_INVALID:
+		return "Invalid query!";
+	break;
+	case USER_NOT_FOUND:
+		return "Username/password combination not found in database.";
 	break;
 	default:
 		return "IMPLEMENT ME";

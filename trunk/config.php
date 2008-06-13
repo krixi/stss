@@ -60,6 +60,16 @@ define("ADMIN", 4);
 define("USERNAME", 5);
 define("PASSWORD", 6);
 define("LOGOUT", 7);
-define("INVALID_USERNAME", 8);
-define("INVALID_PASS", 9);
+
+// Define error message strings
+define("USERNAME_INVALID", 8);
+define("PASSWORD_INVALID", 9);
+define("PASSWORD_MISMATCH", 10);
+define("PASSWORD_BLANK", 11);
+define("USERNAME_BLANK", 12);
+define("USER_EXISTS", 13);
+define("QUERY_INVALID", 14);
+define("FIRSTNAME_BLANK", 15);
+define("LASTNAME_BLANK", 16);
+define("USER_NOT_FOUND", 17);
 ?>

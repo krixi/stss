@@ -4,40 +4,25 @@ include BASE_PATH."/views/common.php";
 
 function display($data) {
 	
-	$userErr = false;
-	$passErr = false;
 	
-	beginHeader();
-	if (is_array($data)) {
-		if (isset($data['userErr'])) {
-			$userErr = true;
-		}
+	if (is_array($data) && isset($data['login'])) {
 		
-		if (isset($data['passErr'])) {
-			$passErr = true;
-		}
-		
-		if (!$userErr && !$passErr) {
-			printf("<meta http-equiv=\"REFRESH\" content=\"2;URL=index.php\">\n");
-			endHeader(LOGIN);
-			printf("Welcome %s\n", $data['user']);
-		} else {
-			printf("<meta http-equiv=\"REFRESH\" content=\"2;URL=index.php\">\n");
-			endHeader(LOGIN);
-			if ($userErr) {
-				printf("<span class=\"error\">%s</span>\n", getString($data['userErr']));
+		if ($data['login'] == true) {
+			header("Location: /index.php");
+			exit;
+		} else { // login == false, check for errors
+			showHeader(LOGIN);		
+			if (isset($data['errors'])) {
+				foreach ($data['errors'] as $error) {
+					printf("<span class=\"error\">%s</span>\n", getString($error));
+				}
 			}
-			if ($passErr) {
-				printf("<span class=\"error\">%s</span>\n", getString($data['passErr']));
-			}
+			showFooter();
 		}
 	} else {
-		endHeader(LOGIN);
-		printf("ERROR: Data is not an array!");
+		trigger_error("Data not an array: login.view");
+		header("Location: /index.php");
 	}
-	
-	
-	showFooter();
 }
 
 ?>
