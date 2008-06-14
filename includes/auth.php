@@ -103,5 +103,9 @@ function verifyEmail($email) {
 function verifyPassword($pass) {
 	return eregi("^[a-z0-9]{4}[a-z0-9]*$", $pass);
 }
+
+function verifyDate($date) {
+	return eregi("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{1,2}:[0-9]{2}$", $date);
+}
 ?>
 

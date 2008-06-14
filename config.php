@@ -73,4 +73,7 @@ define("QUERY_INVALID", 14);
 define("FIRSTNAME_BLANK", 15);
 define("LASTNAME_BLANK", 16);
 define("USER_NOT_FOUND", 17);
+define("SEATS_INVALID", 19);
+define("PRICE_INVALID", 20);
+define("DATE_INVALID", 21);
 ?>

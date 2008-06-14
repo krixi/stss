@@ -1,7 +1,5 @@
 <?php
 
-include BASE_PATH."/views/common.php";
-
 function display($data) {
 	showHeader(JOIN);
 	//output here page content generated out of results storend

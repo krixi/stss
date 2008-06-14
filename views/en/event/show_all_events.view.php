@@ -1,11 +1,9 @@
 <?php
-include BASE_PATH."/views/common.php";
-
 
 function display($result) {
   showHeader(EVENTS);
 
-  echo '<h2>All Events</h2>';
+  echo '<h1>All Events</h1>';
   
   print "<table>\n";
   print "<tr>\n";
