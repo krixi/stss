@@ -25,6 +25,8 @@ function display($result) {
   
   print "</table>\n\n";
   
+    printf("<a href=\"index.php?module=event&action=show_upcoming_events\">Show Upcoming</a>\n");
+  
   
  // print "Eventlisting as pdf";
   showFooter();
