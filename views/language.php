@@ -86,6 +86,9 @@ function getEnglishString($desiredString) {
 	case NO_ACCESS:
 		return "You do not have the required access level!";
 	break;
+	case CONNECTION_FAILED:
+		return "Failed connecting to the database. Please contact your administrator.";
+	break;
 	default:
 		return "IMPLEMENT ME: ".$desiredString;
 	break;

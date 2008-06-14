@@ -27,7 +27,7 @@ function display($data) {
 </td>
 <td>
 <input class="textinput" name="date" id="date" type="text" size="30" 
-value="DD/MM/YY" onfocus="if (this.value == 'DD/MM/YY') this.value = '';" onblur="if (this.value == '') this.value = 'DD/MM/YY';"/>
+value="0000-00-00 00:00" onfocus="if (this.value == '0000-00-00 00:00') this.value = '';" onblur="if (this.value == '') this.value = '0000-00-00 00:00';"/>
 </td>
 </tr>
 <tr>

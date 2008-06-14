@@ -12,7 +12,24 @@ function authenticate () {
 function work() {
 	$result = array();
 	
-	$eventID = $_GET['eventID'];
+	$result['numAdded'] = 0;
+	if (isset($_GET['eventID'])) {
+		if (!isset($_SESSION['cart'])) {
+			$_SESSION['cart'] = array();
+		}
+		$eventID = $_GET['eventID'];
+		if (isset($_POST['normal']) && is_numeric($_POST['normal'])) {
+			$_SESSION['cart'][] = new Ticket("normal", $_POST['normal_price'], $_POST['normal']);
+			$result['numAdded']++;
+		}
+		
+		if (isset($_POST['premium']) && is_numeric($_POST['premium'])) {
+			$_SESSION['cart'][] = new Ticket("premium", $_POST['premium_price'], $_POST['premium']);
+			$result['numAdded']++;
+		}
+	}
+	
+	
 	/*
 	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	

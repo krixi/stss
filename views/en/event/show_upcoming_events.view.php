@@ -20,6 +20,7 @@ function display($result) {
     print "  <td> {$row['amount_total']} </td>\n";
     print "  <td> {$row['available']} </td>\n";
     print '  <td> <a href = "index.php?module=event&action=event_detail&eventID='.$row['eventID']."\">details</a>\n";
+	printf("<td><a href=\"index.php?module=buy&action=buy_tickets&eventID=%s\">Buy tickets</a></td>\n", $row['eventID']);
     print "</tr>\n\n";
   }
   
