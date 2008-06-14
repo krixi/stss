@@ -76,4 +76,6 @@ define("USER_NOT_FOUND", 17);
 define("SEATS_INVALID", 19);
 define("PRICE_INVALID", 20);
 define("DATE_INVALID", 21);
+define("FILE_NOT_FOUND", 22);
+define("NO_ACCESS", 23);
 ?>

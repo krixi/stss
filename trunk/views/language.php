@@ -80,8 +80,14 @@ function getEnglishString($desiredString) {
 	case DATE_INVALID:
 		return "Please enter a valid date.";
 	break;
+	case FILE_NOT_FOUND:
+		return "File(s) not found";
+	break;
+	case NO_ACCESS:
+		return "You do not have the required access level!";
+	break;
 	default:
-		return "IMPLEMENT ME";
+		return "IMPLEMENT ME: ".$desiredString;
 	break;
 	}
 }
