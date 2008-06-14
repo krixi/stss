@@ -91,7 +91,7 @@ function work() {
 		}
 		
 		if (!$result['added']) {
-			$result['errors'][] = INVALID_QUERY;
+			$result['errors'][] = QUERY_INVALID;
 		} 
 	}
 	return $result;
