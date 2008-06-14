@@ -71,6 +71,15 @@ function getEnglishString($desiredString) {
 	case USER_NOT_FOUND:
 		return "Username/password combination not found in database.";
 	break;
+	case SEATS_INVALID:
+		return "Please enter a valid number of seats.";
+	break;
+	case PRICE_INVALID:
+		return "Please enter a valid price.";
+	break;
+	case DATE_INVALID:
+		return "Please enter a valid date.";
+	break;
 	default:
 		return "IMPLEMENT ME";
 	break;

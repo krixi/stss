@@ -10,12 +10,15 @@ $currentText = " id=\"current\"";
 
 printf("<ul>\n");
 
-printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", ($page == INDEX) ? $currentText : '', getString(INDEX), getString(INDEX));
+printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", 
+	($page == INDEX) ? $currentText : '', getString(INDEX), getString(INDEX));
 
-printf("<li%s><a href=\"index.php?module=event&action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", ($page == EVENTS) ? $currentText : '', getString(EVENTS), getString(EVENTS));
+printf("<li%s><a href=\"index.php?module=event&action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", 
+	($page == EVENTS) ? $currentText : '', getString(EVENTS), getString(EVENTS));
 
 if ($_SESSION['admin'] == true && $_SESSION['login'] == true) {
-	printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", ($page == ADMIN) ? $currentText : '', getString(ADMIN), getString(ADMIN));
+	printf("<li%s><a href=\"index.php?module=user&action=admin\" title=\"%s\">%s</a></li>\n", 
+		($page == ADMIN) ? $currentText : '', getString(ADMIN), getString(ADMIN));
 } // END if admin
 
 

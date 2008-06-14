@@ -1,7 +1,5 @@
 <?php
 
-include BASE_PATH."/views/common.php";
-
 function display($data) {
 	showHeader(INDEX);
 	if ($data['login'] == true) {

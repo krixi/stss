@@ -18,7 +18,7 @@ function work() {
 		return false;
 	}
 
-  $query = 'SELECT *, (availableseats.amount - availableseats.sold) AS available FROM events, availableseats 
+  $query = 'SELECT *, (availableseats.amount - availableseats.sold) AS available FROM events, availableseats
                 WHERE events.eventID = availableseats.eventID AND events.eventID = '.$eventID;
 
   $sql_result = $db_handle->query($query);
