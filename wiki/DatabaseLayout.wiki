@@ -1,4 +1,4 @@
-Fixed the View and changed name to event_seats
+Fixed the Views
 
 {{{
 CREATE TABLE `events` (
@@ -68,8 +68,7 @@ SELECT eventID, category, name, date, price, amount,
 -- View with statistics to each event and category
 
 CREATE VIEW event_cat_stats AS
-SELECT *, 
- (amount-sold) AS available,
+SELECT *,
  ((amount-sold)/amount*100) AS perc_unsold,
  ((sold)/amount*100) AS perc_sold,
  (price * sold) AS revenue
