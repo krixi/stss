@@ -55,8 +55,10 @@ CREATE TABLE `user` (
 
 -- --------------------------------------------------------
 
-CREATE VIEW event_seats AS 
-SELECT eventID, category, name, date, price, amount, COUNT(purchases.seatID) AS sold 
+CREATE VIEW availableseats AS
+SELECT eventID, category, name, date, price, amount,
+ COUNT(purchases.seatID) AS sold,
+ (amount - COUNT(purchases.seatID)) AS available
   FROM seats NATURAL JOIN events
   NATURAL LEFT OUTER JOIN purchases 
   GROUP BY eventID, category;
