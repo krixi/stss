@@ -2,12 +2,12 @@ Fixed the Views
 
 {{{
 CREATE TABLE `events` (
-  `eventID` int(11) NOT NULL,
+  `eventID` int(11) NOT NULL auto_increment,
   `name` varchar(40) NOT NULL,
   `date` datetime NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY  (`eventID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -83,9 +83,9 @@ SELECT
  eventID,
  name,
  date,
- SUM(amount),
- SUM(sold),
- SUM(available), 
+ SUM(amount) AS amount,
+ SUM(sold) AS sold,
+ SUM(available) AS available, 
  (SUM(available) / SUM(amount)*100) AS perc_unsold,
  (SUM(sold) / SUM(amount)*100) AS perc_sold,
  SUM(revenue) AS total_rev
