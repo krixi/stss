@@ -61,5 +61,36 @@ SELECT eventID, category, name, date, price, amount, COUNT(purchases.seatID) AS 
   NATURAL LEFT OUTER JOIN purchases 
   GROUP BY eventID, category;
 
-}}}
+-- --------------------------------------------------------
 
+-- View with statistics to each event and category
+
+CREATE VIEW event_cat_stats AS
+SELECT *, 
+ (amount-sold) AS available,
+ ((amount-sold)/amount*100) AS perc_unsold,
+ ((sold)/amount*100) AS perc_sold,
+ (price * sold) AS revenue
+FROM `event_seats` 
+
+
+-- --------------------------------------------------------
+
+
+CREATE VIEW event_stats AS
+SELECT
+ eventID,
+ name,
+ date,
+ SUM(amount),
+ SUM(sold),
+ SUM(available), 
+ (SUM(available) / SUM(amount)*100) AS perc_unsold,
+ (SUM(sold) / SUM(amount)*100) AS perc_sold,
+ SUM(revenue) AS total_rev
+
+FROM `event_cat_stats`
+GROUP BY eventID
+
+
+}}}
