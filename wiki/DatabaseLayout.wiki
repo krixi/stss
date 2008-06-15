@@ -1,48 +1,65 @@
-#Possible DB Layout
+Fixed the View and changed name to event_seats
 
 {{{
- CREATE TABLE `STSS`.`User` (
-`userID` INT NOT NULL ,
-`email` VARCHAR( 40 ) NOT NULL ,
-`firstname` VARCHAR( 40 ) NOT NULL ,
-`lastname` VARCHAR( 40 ) NOT NULL ,
-`role` TINYINT NOT NULL ,
-`lastlogin` DATE NOT NULL
-) ENGINE = InnoDB 
+CREATE TABLE `events` (
+  `eventID` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `date` datetime NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY  (`eventID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
- CREATE TABLE `STSS`.`events` (
-`eventID` INT NOT NULL ,
-`name` VARCHAR( 40 ) NOT NULL ,
-`date` DATE NOT NULL
-) ENGINE = InnoDB 
+-- --------------------------------------------------------
 
- CREATE TABLE `STSS`.`seats` (
-`eventID` INT NOT NULL ,
-`category` VARCHAR( 40 ) NOT NULL ,
-`price` FLOAT NOT NULL ,
-`amount` INT NOT NULL
-) ENGINE = InnoDB COMMENT = 'category is premium or normal' 
+CREATE TABLE `purchases` (
+  `eventID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `seatID` int(11) NOT NULL,
+  `category` varchar(40) NOT NULL,
+  `purchaseDate` datetime NOT NULL,
+  `status` varchar(40) default NULL,
+  PRIMARY KEY  (`eventID`,`seatID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
- CREATE TABLE `STSS`.`purchases` (
-`eventID` INT NOT NULL ,
-`userID` INT NOT NULL ,
-`seatID` INT NOT NULL ,
-`category` VARCHAR( 40 ) NOT NULL ,
-`purchaseDate` DATETIME NOT NULL
-) ENGINE = InnoDB;
+-- --------------------------------------------------------
 
- CREATE TABLE `stss`.`pwd` (
-`userID` INT NOT NULL ,
-`pwdHash` VARCHAR( 256 ) NOT NULL ,
-`salt` VARCHAR( 128 ) NOT NULL
-) ENGINE = InnoDB;
+CREATE TABLE `pwd` (
+  `userID` int(11) NOT NULL,
+  `pwdHash` varchar(256) NOT NULL,
+  `salt` varchar(128) NOT NULL,
+  PRIMARY KEY  (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE VIEW availableseats AS  SELECT purchases.eventID, purchases.category, seats.amount, COUNT( purchases.seatID ) AS sold
-FROM seats, purchases
-WHERE seats.eventID = purchases.eventID
-AND seats.category = purchases.category
-GROUP BY purchases.eventID, purchases.category;
+-- --------------------------------------------------------
+
+CREATE TABLE `seats` (
+  `eventID` int(11) NOT NULL,
+  `category` varchar(40) NOT NULL,
+  `price` float NOT NULL,
+  `amount` int(11) NOT NULL,
+  PRIMARY KEY  (`eventID`,`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='category is premium or normal';
+
+-- --------------------------------------------------------
+
+CREATE TABLE `user` (
+  `userID` int(11) NOT NULL auto_increment,
+  `email` varchar(40) NOT NULL,
+  `firstname` varchar(40) NOT NULL,
+  `lastname` varchar(40) NOT NULL,
+  `role` tinyint(4) NOT NULL,
+  `lastlogin` datetime NOT NULL,
+  PRIMARY KEY  (`userID`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+CREATE VIEW event_seats AS 
+SELECT eventID, category, name, date, price, amount, COUNT(purchases.seatID) AS sold 
+  FROM seats NATURAL JOIN events
+  NATURAL LEFT OUTER JOIN purchases 
+  GROUP BY eventID, category;
+
 }}}
-
-
 
