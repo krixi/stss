@@ -6,6 +6,10 @@
 *
 * @author Michael Prilop
 */
+// Set to true for debugging
+define("DEBUG", true);
+
+
 // Timeout in minutes
 define("USER_TIMEOUT", 5);
 

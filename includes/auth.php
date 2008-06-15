@@ -8,6 +8,7 @@ function authUser() {
 }
 
 function authAdmin() {
+	//TODO: make authAdmin a bit mor secure - check for ip=userIP or a set temporary pwd
 	return ($_SESSION['login'] && $_SESSION['admin']);
 }
 

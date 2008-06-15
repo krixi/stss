@@ -49,6 +49,16 @@ function work() {
 
 		//check if there are enough available tickets in this category and if not inform user
 		//TODO: continue here
+		$sql_query_seats = "SELECT available FROM event_cat_stats 
+							WHERE eventID = $eventID AND category = '$category'";
+		
+		$sql_result = $db_handle->query($sql_query_seats)->fetch_array();
+		$availableSeats = $sql_result[0];
+		
+		if ($number > $availableSeats){
+			$result['errors'][] = 'Not enough seats available'; //TODO: define error
+			return $result;
+		}
 		
 		
 		//Get the highest available chairnumber
