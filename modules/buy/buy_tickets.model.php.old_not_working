@@ -31,7 +31,7 @@ function work() {
 			return false;
 		}
 		else {
-			//TODO:Display user error without detailed information and nicer layout
+
 			trigger_error("Connection failed: " . mysqli_connect_error(), E_USER_ERROR);
 			return false;
 		}

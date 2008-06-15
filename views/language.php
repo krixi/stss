@@ -86,8 +86,11 @@ function getEnglishString($desiredString) {
 	case NO_ACCESS:
 		return "You do not have the required access level!";
 	break;
-	case CONNECTION_FAILED:
-		return "Failed connecting to the database. Please contact your administrator.";
+	case DB_ERROR:
+		return "A Database ERROR occured. Please contact Systemadministrator.";
+	break;
+	case NOT_ENOUGH_SEATS:
+		return "There are not enough Seats to fullfil your purchase.";
 	break;
 	default:
 		return "IMPLEMENT ME: ".$desiredString;
