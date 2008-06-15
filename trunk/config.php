@@ -82,5 +82,6 @@ define("PRICE_INVALID", 20);
 define("DATE_INVALID", 21);
 define("FILE_NOT_FOUND", 22);
 define("NO_ACCESS", 23);
-define("CONNECTION_FAILED", 24);
+define("DB_ERROR", 24);
+define("NOT_ENOUGH_SEATS", 25);
 ?>

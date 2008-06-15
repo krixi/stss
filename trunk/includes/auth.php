@@ -3,6 +3,11 @@ function authNO() {
 	return true;
 }
 
+function authMoreUser() {
+	//TODO: really make sure user is authenticated - maybe by setting a temp. password and checking against db
+	return authUser();
+}
+
 function authUser() {
 	return $_SESSION['login'];
 }
