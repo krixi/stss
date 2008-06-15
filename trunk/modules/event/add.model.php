@@ -55,6 +55,7 @@ function work() {
 		// Don't add bad data to database.
 		if (!$result['verified']) {
 			return $result;
+			//TODO: isn't there a die necessary here?
 		}
 		
 		// establish connection
@@ -65,6 +66,7 @@ function work() {
 			return $result;
 		}
 		
+		//TODO: What if you enter the same event twice? Should we give a specific error message?
 		// Put the name, date and description in the events table
 		$sql_addEvent = "INSERT INTO events ( name, date, description )
 					VALUES ( '".$name."', '".$date."', '".$description."');";

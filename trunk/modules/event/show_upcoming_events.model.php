@@ -17,15 +17,7 @@ function work() {
 	}
   
      
-  $sql = 'SELECT events.eventID, events.name, events.date, '
-          . ' SUM( seats.amount ) AS amount_total, '
-          . ' (availableseats.amount - availableseats.sold ) AS available'
-          . ' FROM events, seats, availableseats'
-          . ' WHERE events.eventID = availableseats.eventID '
-          . ' AND seats.eventID = events.eventID'
-          . ' AND seats.category = availableseats.category'
-          . ' AND events.date > NOW( )'
-          . ' GROUP BY events.eventID';
+  $sql = 'SELECT * FROM event_stats WHERE NOW() < event_stats.date';
 
   $sql_result = $db_handle->query($sql);
     

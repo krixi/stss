@@ -17,7 +17,7 @@ function display($result) {
     print "<tr>\n";
     print "  <td> {$row['date']} </td>\n";
     print "  <td> {$row['name']} </td>\n";
-    print "  <td> {$row['amount_total']} </td>\n";
+    print "  <td> {$row['amount']} </td>\n";
     print "  <td> {$row['available']} </td>\n";
     print '  <td> <a href = "index.php?module=event&action=event_detail&eventID='.$row['eventID']."\">details</a>\n";
     print "</tr>\n\n";
