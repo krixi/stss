@@ -73,7 +73,7 @@ SELECT *,
  ((amount-sold)/amount*100) AS perc_unsold,
  ((sold)/amount*100) AS perc_sold,
  (price * sold) AS revenue
-FROM `event_seats` 
+FROM `availableseats`;
 
 
 -- --------------------------------------------------------
@@ -90,9 +90,8 @@ SELECT
  (SUM(available) / SUM(amount)*100) AS perc_unsold,
  (SUM(sold) / SUM(amount)*100) AS perc_sold,
  SUM(revenue) AS total_rev
-
 FROM `event_cat_stats`
-GROUP BY eventID
+GROUP BY eventID;
 
 
 }}}
