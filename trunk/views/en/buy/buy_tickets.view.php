@@ -1,4 +1,5 @@
 <?php
+
 function display($data) {
 	showHeader(EVENTS);
 
@@ -10,14 +11,30 @@ function display($data) {
 		}
 	}
 
-	if (isset($data['oldCart'])) {
-		echo "<ul>\n";
+	if (count($data['oldCart'])>0) {
+
+		echo "<h2>Purchased Tickets</h2>";
+
+		echo "<table>
+
+	<tr>
+		<th>Event&nbsp;name</th>
+		<th>Seat&nbsp;category</th>
+		<th>Number&nbsp;of&nbsp;tickets</th>
+	</tr>";
+
 		foreach ($data['oldCart'] AS $purchase) {
-			//TODO: nicer table output with event-name price, total cost etc.
-			echo "<li>{$purchase['eventID']} | {$purchase['category']} | {$purchase['number']} | {$purchase['status']}</li>\n";
+
+			echo "<tr>\n";
+			echo "	<td> {$purchase['name']} </td>\n";
+			echo "	<td> {$purchase['category']} </td>\n";
+			echo "	<td> {$purchase['number']} </td>\n";
+			echo "</tr>\n\n";
 		}
-		echo "</ul>\n";
+
+		echo "</table>\n";
 	}
+
 	showFooter();
 }
 
