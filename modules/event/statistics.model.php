@@ -6,7 +6,7 @@ function authenticate () {
 	//authNO();
 	//or
 	//authUser();
-  return authAdmin();
+	return authAdmin();
 	//defined in Framework
 }
 
@@ -32,13 +32,23 @@ function work() {
 	}
 
 
+	//get detailed statistics
 	$sql = "SELECT * FROM event_cat_stats";
 	$sql_result = $db_handle->query($sql);
-	
+
 	while ($row = $sql_result->fetch_array()){
-		$result['stats'][] = $row;
+		$result['stats_by_event_category'][] = $row;
 	}
 
+	//get statistics by event
+	$sql = "SELECT * FROM event_stats";
+	$sql_result = $db_handle->query($sql);
+
+	while ($row = $sql_result->fetch_array()){
+		$result['stats_by_event'][] = $row;
+	}
+	
+	//get statistics for all events
 
 	return $result;
 }
