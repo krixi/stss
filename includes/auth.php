@@ -8,7 +8,6 @@ function authUser() {
 }
 
 function authAdmin() {
-	//TODO: make authAdmin a bit mor secure - check for ip=userIP or a set temporary pwd
 	return ($_SESSION['login'] && $_SESSION['admin']);
 }
 
@@ -96,9 +95,9 @@ uses regular expressions to verify the user's input.
 returns true if the string matched and false if not.
 ****************************/
 function verifyEmail($email) {
-//TODO: add underscores, etc...
-	return eregi("^[a-z0-9]+(\.[a-z0-9]+)*@[a-z0-9]+(\.[a-z0-9]+)+$", $email);
+	return eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email);
 }
+  
 
 function verifyPassword($pass) {
 	return eregi("^[a-z0-9]{6}[a-z0-9]*$", $pass);
