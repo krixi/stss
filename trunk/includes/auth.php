@@ -3,14 +3,6 @@ function authNO() {
 	return true;
 }
 
-function authMoreUser() {
-	//check if pwd_tmp is the same as in db
-	$pwd_tmp = $_SESSION['pwd_tmp'];
-	
-	//TODO: really make sure user is authenticated - maybe by setting a temp. password and checking against db
-	return authUser();
-}
-
 function authUser() {
 	return $_SESSION['login'];
 }
