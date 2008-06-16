@@ -48,9 +48,7 @@ function work() {
 		WHERE eventID = $eventID AND category = '$category'";
 		$sql_result = $db_handle->query($sql_query_check_user)->fetch_array();
 
-		//TODO:nicer method to see if result is empty?
 		if (!$sql_result) {
-			//TODO: >>possible attack - write to logfile all details
 			$result['errors'][] = DB_ERROR;
 			return $result;
 		}

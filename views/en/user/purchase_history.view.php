@@ -25,14 +25,8 @@ function display($data) {
 		<th>Purchase&nbsp;date</th>	
 	</tr>";
 
-		//TODO: every second event in different color (not dependent of eventID)
 		foreach ($data['purchase_history'] AS $row) {
-			if ($row['eventID']%2) {
-				echo "<tr bgcolor=\"lightgray\">\n";
-			}
-			else {
-				echo "<tr>\n";
-			}
+			echo "<tr>\n";
 			echo "	<td> {$row['name']} </td>\n";
 			echo "	<td> {$row['category']} </td>\n";
 			echo "	<td> {$row['seatID']} </td>\n";
