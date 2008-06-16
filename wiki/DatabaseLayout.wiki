@@ -51,7 +51,7 @@ CREATE TABLE `user` (
   `lastlogin` datetime NOT NULL,
   PRIMARY KEY  (`userID`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
 
