@@ -16,13 +16,10 @@ function work() {
 
 	// Expecting an array named 'cart' filled with single purchases as eventid, name, category,
 	// price and number of tickets in the session
-	//	$purchases = $_SESSION['cart'];
+	$purchases = $_SESSION['cart'];
 	//clear shoppingcart
-	$_SESSION['cart'] = '';
+	$_SESSION['cart'] = array();
 	$oldCart = array();
-
-	$purchases = array(array('eventID' => '1', 'category' => 'premium',
-						 'price' => 20, 'number' => 3));
 
 
 	//Connect to database
@@ -38,9 +35,6 @@ function work() {
 			return $result;
 		}
 	}
-
-
-
 
 
 	foreach ($purchases AS $purchase) {
