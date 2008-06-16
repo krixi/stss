@@ -20,7 +20,8 @@ function display($data) {
 	<tr>
 		<th>Event&nbsp;name</th>
 		<th>Seat&nbsp;category</th>
-		<th>Number&nbsp;of&nbsp;tickets</th>
+		<th>Number</th>
+		<th>Status</th>
 	</tr>";
 
 		foreach ($data['oldCart'] AS $purchase) {
@@ -29,6 +30,7 @@ function display($data) {
 			echo "	<td> {$purchase['name']} </td>\n";
 			echo "	<td> {$purchase['category']} </td>\n";
 			echo "	<td> {$purchase['number']} </td>\n";
+			echo "	<td> {$purchase['status']} </td>\n";
 			echo "</tr>\n\n";
 		}
 

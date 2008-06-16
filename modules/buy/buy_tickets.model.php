@@ -70,43 +70,42 @@ function work() {
 			$oldCart[] = $purchase;
 			$result['errors'][] = NOT_ENOUGH_SEATS;
 			$result['errors'][] = $purchase;
-			$result['oldCart'] = $oldCart;
-			return $result;
-		}
 
-
-		//Get the highest available SeatID and lock tables to
-		//make sure there are no purchases added in the meantime = changed highest seatID
-		$db_handle->query("LOCK TABLES purchases WRITE");
-		$sql_query_maxSeat = 'SELECT MAX(seatID) FROM `purchases` WHERE eventID = '.$eventID;
-		$sql_result = $db_handle->query($sql_query_maxSeat)->fetch_array();
-		if ($sql_result) {
-			$highestSeatID = $sql_result[0];
 		}
 		else {
-			$highestSeatID = 1;
-		}
 
 
-		//Now that we have the highest $seatID for this event - lets insert the datasets
-		for ($i=1; $i<=$number; $i++){
-			$newSeat = $highestSeatID + $i;
+			//Get the highest available SeatID and lock tables to
+			//make sure there are no purchases added in the meantime = changed highest seatID
+			$db_handle->query("LOCK TABLES purchases WRITE");
+			$sql_query_maxSeat = 'SELECT MAX(seatID) FROM `purchases` WHERE eventID = '.$eventID;
+			$sql_result = $db_handle->query($sql_query_maxSeat)->fetch_array();
+			if ($sql_result) {
+				$highestSeatID = $sql_result[0];
+			}
+			else {
+				$highestSeatID = 1;
+			}
 
-			$sql_insert_query = "INSERT INTO purchases (eventID, userID, seatID, category, purchaseDate, status)
-			VALUES ($eventID, $userID, $newSeat, '$category', NOW(), '$status')";
-			$db_handle->query($sql_insert_query);
-				
-			if (DEBUG) echo "SQL_insert: $sql_insert_query<br>";
-				
-			$purchase['status'] = 'bought';
+
+			//Now that we have the highest $seatID for this event - lets insert the datasets
+			for ($i=1; $i<=$number; $i++){
+				$newSeat = $highestSeatID + $i;
+
+				$sql_insert_query = "INSERT INTO purchases (eventID, userID, seatID, category, purchaseDate, status)
+				VALUES ($eventID, $userID, $newSeat, '$category', NOW(), '$status')";
+				$db_handle->query($sql_insert_query);
+
+				if (DEBUG) echo "SQL_insert: $sql_insert_query<br>";
+
+			}
+
+			$purchase['status'] = 'reserved for you';
 			$oldCart[]=$purchase;
-
+				
+			$db_handle->query("UNLOCK TABLES");
 
 		}
-
-		$db_handle->query("UNLOCK TABLES");
-
-
 
 
 
@@ -114,7 +113,7 @@ function work() {
 
 
 	$db_handle->close();
-	
+
 	$result['oldCart'] = $oldCart;
 
 	return $result;
