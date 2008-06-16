@@ -1,7 +1,5 @@
 <?php
 
-
-
 function display($data) {
 	showHeader(INDEX);
 	

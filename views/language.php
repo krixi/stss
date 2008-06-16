@@ -92,6 +92,15 @@ function getEnglishString($desiredString) {
 	case NOT_ENOUGH_SEATS:
 		return "There are not enough Seats to fullfil your purchase.";
 	break;
+	case CART_EMPTY:
+		return "Your cart is empty.";
+	break;
+	case VIEW_CART:
+		return "View Cart";
+	break;
+	case MISSING_EVENTID:
+		return "Please specify an Event ID!";
+	break;
 	default:
 		return "IMPLEMENT ME: ".$desiredString;
 	break;

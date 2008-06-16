@@ -17,7 +17,7 @@ function work() {
 	}
   
      
-  $sql = 'SELECT * FROM event_stats WHERE NOW() < event_stats.date';
+  $sql = 'SELECT * FROM event_stats WHERE NOW() < event_stats.date ORDER BY event_stats.date';
 
   $sql_result = $db_handle->query($sql);
     

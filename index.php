@@ -17,6 +17,7 @@ function initSession() {
 	$_SESSION['login'] = false;
 	$_SESSION['admin'] = false;
 	$_SESSION['lang'] = LANGUAGE_DEFAULT;
+	$_SESSION['cart'] = array();
 }
   
 //Initialize session if not done so already
