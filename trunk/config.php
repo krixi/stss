@@ -65,6 +65,7 @@ define("USERNAME", 5);
 define("PASSWORD", 6);
 define("LOGOUT", 7);
 define("EVENTS", 18);
+define("VIEW_CART", 27);
 
 // Define error message strings
 define("USERNAME_INVALID", 8);
@@ -84,4 +85,6 @@ define("FILE_NOT_FOUND", 22);
 define("NO_ACCESS", 23);
 define("DB_ERROR", 24);
 define("NOT_ENOUGH_SEATS", 25);
+define("CART_EMPTY", 26);
+define("MISSING_EVENTID", 28);
 ?>
