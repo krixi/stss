@@ -3,9 +3,7 @@
 
 function authenticate () {
 	//implement your own or call either
-	return authMoreUser();
-	//or
-	//authUser();
+	return authUser();
 	//defined in Framework
 }
 
