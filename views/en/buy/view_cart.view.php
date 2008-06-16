@@ -1,7 +1,7 @@
 <?php
 
 function display($data) {
-	showHeader(INDEX);
+	showHeader(VIEW_CART);
 
 	//output here page content generated out of results storend
 	//in array $data
