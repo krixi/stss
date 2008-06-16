@@ -41,6 +41,9 @@ function getEnglishString($desiredString) {
 	case LOGOUT:
 		return "Logout";
 	break;
+	case PURCHASES:
+		return "Purchases";
+	break;
 	case USERNAME_INVALID:
 		return "Invalid Email";
 	break;

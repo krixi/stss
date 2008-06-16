@@ -6,6 +6,7 @@ function display($data) {
 	//in array $data
 	printf("Added %s tickets to shopping cart.<br />\n", $data['numAdded']);
 	
+	//TODO: continue shopping or checkout tickets
 	
 	showFooter();
 }
