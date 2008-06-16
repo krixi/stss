@@ -48,6 +48,8 @@ onfocus="if (this.value == '<?php echo getString(PASSWORD); ?>') this.value = ''
 } else { // login == true
 	printf("<li%s><a href=\"index.php?module=buy&action=view_cart\" title=\"%s\">%s</a></li>", 
 		($page == VIEW_CART) ? $currentText : '', getString(VIEW_CART), getString(VIEW_CART));
+	printf("<li%s><a href=\"index.php?module=user&action=purchase_history\" title=\"%s\">%s</a></li>", 
+		($page == PURCHASES) ? $currentText : '', getString(PURCHASES), getString(PURCHASES));
 	printf("<li%s><a href=\"index.php?module=user&action=logout\" title=\"%s\">%s</a></li>", 
 		($page == LOGOUT) ? $currentText : '', getString(LOGOUT), getString(LOGOUT));
 } // end "if logged in" statement

@@ -66,6 +66,7 @@ define("PASSWORD", 6);
 define("LOGOUT", 7);
 define("EVENTS", 18);
 define("VIEW_CART", 27);
+define("PURCHASES", 29);
 
 // Define error message strings
 define("USERNAME_INVALID", 8);
