@@ -73,7 +73,8 @@ function work() {
 			return $result;
 		}
 		
-		$digest = sha1($_POST['password1']);
+		$salt = genSalt();
+		$digest = sha1($_POST['password1'].$salt);
 			
 		$sql_query = "SELECT * FROM User WHERE email = '".$email."'";
 		if ($check_result = $db_handle->query($sql_query)) {
@@ -96,7 +97,7 @@ function work() {
 								
 								$result['userID'] = $row['userID'];
 								
-								$sql_addpass = "INSERT INTO pwd (userID, pwdHash) VALUES ('".$row['userID']."', '".$digest."');";
+								$sql_addpass = "INSERT INTO pwd (userID, pwdHash, salt) VALUES ('".$row['userID']."', '".$digest."', '".$salt."');";
 								
 								if ($add_pass_result = $db_handle->query($sql_addpass)) {
 									if ($db_handle->affected_rows == 1) {

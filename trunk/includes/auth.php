@@ -4,6 +4,9 @@ function authNO() {
 }
 
 function authMoreUser() {
+	//check if pwd_tmp is the same as in db
+	$pwd_tmp = $_SESSION['pwd_tmp'];
+	
 	//TODO: really make sure user is authenticated - maybe by setting a temp. password and checking against db
 	return authUser();
 }
@@ -41,8 +44,7 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 	}
 	
 	$digest = sha1($pass);
-		
-  
+	  
 	if (is_numeric($loginName)) {
 		//look for userID in DB
 		$selectUser = 'user.userID = ?';
@@ -64,8 +66,8 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 		$stmt->bind_result($userID, $userEmail, $isAdmin, $pwdHash, $salt);
 		$stmt->fetch();
 		
-		
-		if ($userEmail != '') {
+		//&& $pwdHash == sha1($pass.$salt)
+		if ($userEmail != '' && $pwdHash == sha1($pass.$salt)) {
 			$setUserID = $userID;
 			$setUserEmail = $userEmail;
 			if ($isAdmin == '1') {
@@ -113,5 +115,15 @@ function verifyPassword($pass) {
 function verifyDate($date) {
 	return eregi("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{1,2}:[0-9]{2}$", $date);
 }
+
+/*
+ * Generates a random salt of length 40
+ */
+function genSalt(){
+   srand((double)microtime()*1000000);
+  $random = rand();
+  $salt = sha1($random);
+  return($salt);
+} 
 ?>
 
