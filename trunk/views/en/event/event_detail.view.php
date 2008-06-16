@@ -16,7 +16,7 @@ function display($result) {
 			foreach ($result['data'] as $row) {
 				printf("<li>Category: %s - %s Seats, %s available - Price: %s &euro;\n",
 					$row['category'], $row['amount'], $row['available'], $row['price']);
-				if (authUser()) {
+				if (authUser() && !authAdmin()) {
 					printf("<select name=\"%s\" id=\"%s\">\n", $row['category'], $row['category']);
 					for ($i=0; $i<=$row['available']; $i++) {
 						printf("<option value=\"%s\">%s</option>\n", $i, $i);
@@ -26,7 +26,7 @@ function display($result) {
 				}
 			}
 			printf("</ul>");
-			if (authUser()) {
+			if (authUser() && !authAdmin()) {
 				printf("<input class=\"submit\" type=\"submit\" value=\"Add to cart\" /><br />\n");
 				printf("</form><br />\n");
 			}
@@ -45,6 +45,33 @@ function display($result) {
 			printf("<span class=\"error\">No data available for this event!</span>\n");
 		}
 		
+	}
+	
+	if (isset($result['event_detail_admin'])) {
+		echo "<h3>Event Participants</h3>";
+		echo "<table>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Category</th>
+		<th>Seat&nbsp;Number</th>
+		<th>Payment&nbsp;Status</th>
+		<th>Purchase&nbsp;date</th>
+	</tr>";
+		
+		foreach ($result['event_detail_admin'] AS $row) {
+			echo "<tr>\n";
+			echo "	<td> {$row['lastname']}, {$row['firstname']} </td>\n";
+			echo "	<td> {$row['email']} </td>\n";
+			echo "	<td> {$row['category']} </td>\n";
+			echo "	<td> {$row['seatID']} </td>\n";
+			echo "	<td> {$row['status']} </td>\n";
+			echo "	<td> {$row['purchaseDate']} </td>\n";
+			echo "</tr>\n\n";
+		}
+		echo "</table>";
+		
+		echo "<a href=\"index.php?module=event&action=statistics\">more Statistics on events</a>";
 	}
 	
 	if (isset($result['errors'])) {
