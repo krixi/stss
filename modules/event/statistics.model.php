@@ -47,8 +47,16 @@ function work() {
 	while ($row = $sql_result->fetch_array()){
 		$result['stats_by_event'][] = $row;
 	}
-	
+
 	//get statistics for all events
+
+$sql = 'SELECT SUM(amount) AS amount, SUM(sold) AS sold, SUM(available) as available,
+		 SUM(total_rev) AS revenue, ((SUM(sold) / SUM(amount))*100) AS per_sold, 
+		 ((SUM(available) / SUM(amount))*100) AS perc_unsold FROM `event_stats` ';
+
+	$sql_result = $db_handle->query($sql)->fetch_array();
+	$result['stats_total'] = $sql_result;
+
 
 	return $result;
 }

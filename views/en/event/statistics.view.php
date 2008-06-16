@@ -4,6 +4,30 @@
 function display($data) {
 	showHeader(ADMIN);
 
+	//Statistics for all Events
+	echo "<h2>Statistics overall</h2>";
+	echo "<table>
+
+	<tr>
+		<th>Amount&nbsp;total</th>
+		<th>Sold</th>
+		<th>Available</th>
+		<th>%&nbsp;unsold</th>
+		<th>%&nbsp;sold</th>
+		<th>revenue&nbsp;total</th>		
+	</tr>";
+
+		echo "<tr>\n";
+		echo "	<td> {$data['stats_total']['amount']} </td>\n";
+		echo "	<td> {$data['stats_total']['sold']} </td>\n";
+		echo "	<td> {$data['stats_total']['available']} </td>\n";
+		printf('	<td>%d%%</td>', $data['stats_total']['perc_unsold']);
+		printf('	<td>%d%%</td>', $data['stats_total']['perc_sold']);
+		echo "	<td> {$data['stats_total']['revenue']}€ </td>\n";
+		echo "</tr>\n\n";
+
+
+	echo "</table>";
 
 	//Event statistics by Event
 	//Output Table with Event Statistics the detailed Version
