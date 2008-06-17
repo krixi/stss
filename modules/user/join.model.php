@@ -75,6 +75,12 @@ function work() {
 		
 		$salt = genSalt();
 		$digest = sha1($_POST['password1'].$salt);
+		
+		//injection protection
+		$email = $db_handle->real_escape_string($email);
+		$_POST['f_name'] = $db_handle->real_escape_string($_POST['f_name']);
+		$_POST['l_name'] = $db_handle->real_escape_string($_POST['l_name']);
+		
 			
 		$sql_query = "SELECT * FROM User WHERE email = '".$email."'";
 		if ($check_result = $db_handle->query($sql_query)) {
