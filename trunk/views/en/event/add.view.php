@@ -26,8 +26,38 @@ function display($data) {
 <span class="display_txt">Occurrs:</span>
 </td>
 <td>
+<!-- 
 <input class="textinput" name="date" id="date" type="text" size="30" 
 value="0000-00-00 00:00" onfocus="if (this.value == '0000-00-00 00:00') this.value = '';" onblur="if (this.value == '') this.value = '0000-00-00 00:00';"/>
+-->
+<select name="month">
+<option>Jan</option>
+<option>Feb</option>
+<option>Mar</option>
+<option>Apr</option>
+<option>May</option>
+<option>Jun</option>
+<option>Jul</option>
+<option>Aug</option>
+<option>Sep</option>
+<option>Oct</option>
+<option>Nov</option>
+<option>Dec</option>
+</select>
+<select name="date">
+<?php
+for($i=1; $i<=31; $i++) {
+	printf("<option>%s</option>\n", $i);	
+}
+?>
+</select>
+<select name="year">
+<?php
+for($i=2008; $i<=2050; $i++) {
+	printf("<option>%s</option>\n", $i);	
+}
+?>
+</select>
 </td>
 </tr>
 <tr>

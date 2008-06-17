@@ -39,6 +39,7 @@ function display($result) {
 	
 		if (authAdmin()) {
 			printf("<a class=\"button\" href=\"index.php?module=event&action=show_all_events\">Show All</a>\n");
+			printf("<a class=\"button\" href=\"index.php?module=event&action=add\">Add New</a>\n");
 		}
 	}
 	
