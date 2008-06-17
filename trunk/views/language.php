@@ -115,21 +115,100 @@ function getEnglishString($desiredString) {
 
 function getGermanString($desiredString) {
 	// see config.php for list of all defined strings.
-	/*switch($desiredString) {
+	switch($desiredString) {
 	case INDEX:
 		return "Index";
 	break;
-	case LOGIN:
+  case EVENTS:
+		return "Veranstaltungen";
+	break;
+  case LOGIN:
 		return "Login";
 	break;
 	case JOIN:
-		return "Join";
+		return "Registrieren";
+	break;
+	case ADMIN:
+		return "Admin";
+	break;
+	case USERNAME:
+		return "Benutzername";
+	break;
+	case PASSWORD:
+		return "Password";
+	break;
+	case LOGOUT:
+		return "Ausloggen";
+	break;
+	case PURCHASES:
+		return "Einkäufe";
+	break;
+	case USERNAME_INVALID:
+		return "Ungültige Email-Adresse.";
+	break;
+	case PASSWORD_INVALID:
+		return "Ungültiges Password.";
+	break;
+	case PASSWORD_MISMATCH:
+		return "Passwörter stimmen nicht überein.";
+	break;
+	case PASSWORD_BLANK:
+		return "Passwort darf nicht leer sein.";
+	break;
+	case USERNAME_BLANK:
+		return "Email darf nicht leer sein.";
+	break;
+	case FIRSTNAME_BLANK:
+		return "Vorname darf nicht leer sein.";
+	break;
+	case LASTNAME_BLANK:
+		return "Nachname darf nicht leer sein.";
+	break;
+	case USER_EXISTS:
+		return "Email-Adresse existiert bereits.";
+	break;
+	case QUERY_INVALID:
+		return "Ungültige Anfrage!";
+	break;
+	case USER_NOT_FOUND:
+		return "Benutzername/Passwort Kombination nicht registriert.";
+	break;
+	case SEATS_INVALID:
+		return "Bitte geben Sie eine gültige Anzahl Sitze an.";
+	break;
+	case PRICE_INVALID:
+		return "Bitte geben Sie einen gültigen Preis an.";
+	break;
+	case DATE_INVALID:
+		return "Bitte geben Sie ein gültiges Datum an.";
+	break;
+	case FILE_NOT_FOUND:
+		return "Datei(en) nicht gefunden";
+	break;
+	case NO_ACCESS:
+		return "Sie haben nicht die notwendigen Zugriffsrechte!";
+	break;
+	case DB_ERROR:
+		return "Ein Datenbankfehler ist aufgetreten! Bitte informieren Sie den Systemadministrator";
+	break;
+	case NOT_ENOUGH_SEATS:
+		return "Es sind leider nichtmehr genügen Sitze verfügbar.";
+	break;
+	case CART_EMPTY:
+		return "Der Einkaufswagen ist leer.";
+	break;
+	case VIEW_CART:
+		return "Einkaufswagen";
+	break;
+	case MISSING_EVENTID:
+		return "Bitte geben Sie eine Event-ID an!";
+	break;
+	case CREDITCARD_INVALID:
+		return "Ihre Kreditkartendaten sind nicht gültig!";
 	break;
 	default:
-		return "Invalid Desired String";
+		return "IMPLEMENTIERE MICH: ".$desiredString;
 	break;
-	}*/
-	return "Guten Tag";
 }
 
 ?>
