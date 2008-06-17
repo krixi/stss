@@ -11,6 +11,7 @@
 - set session.use_only_cookies to make it more secure (sessionID is not transferred in url anymore)
 - carts are only stored in session -> users may parallel add more tickets to cart than available
 	(but is cought before purchasing)
+- does not validate (e.g. using loads of ä ü ö in the german part :D
 
 
 ENHANCEMENTS

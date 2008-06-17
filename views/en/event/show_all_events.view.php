@@ -36,15 +36,8 @@ function display($result) {
 		printf("<a class=\"button\" href=\"index.php?module=event&action=add\">Add New</a>\n");
 	}
 
-	// print "Eventlisting as pdf";
 	showFooter();
 
-	/*
-	 require BASE_PATH.'/includes/ezpdf/class.ezpdf.php';
-	 $pdf =& new Cezpdf();
-	 $pdf->ezTable($result);
-	 $pdf->ezStream();
-	 */
 }
 
 

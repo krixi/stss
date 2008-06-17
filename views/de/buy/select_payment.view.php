@@ -8,7 +8,7 @@ function display($data) {
 ?>
 <h2>Please choose method of payment</h2>
 <form action="index.php?module=buy&action=buy_tickets" method="post">
-<input type="submit" class="submit" value="Vorrauskasse" /> 
+<input type="submit" class="submit" value="Vorauskasse" /> 
 </form><br>
 <div><a class="button" href="#" onClick="Effect.toggle('cc_menu', 'slide'); return false;">Kreditkarte</a></div>
 <div>
@@ -17,17 +17,17 @@ function display($data) {
 <table class="db_display">
 <tr>
 <td>
-Cardholder: <input type="text" class="textinput" name="Karteninhaber"/>
+Kreditkarteninhaber: <input type="text" class="textinput" name="cardholder"/>
 </td>
 </tr>
 <tr>
 <td>
-Number: <input type="text" class="textinput" name="Kartennummer"/>
+Kreditkartennummer: <input type="text" class="textinput" name="number"/>
 </td>
 </tr>
 <tr>
 <td>
-Card type: <input type="text" class="textinput" name="Typ"/>
+Type: <input type="text" class="textinput" name="type"/>
 </td>
 </tr>
 <tr>
