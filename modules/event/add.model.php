@@ -67,6 +67,14 @@ function work() {
 			return $result;
 		}
 		
+		//using sql-injection protection
+		$date = $db_handle->real_escape_string($date);
+		$name = $db_handle->real_escape_string($name);
+		$row['eventID'] = $db_handle->real_escape_string($row['eventID']);
+		$normal_price = $db_handle->real_escape_string($normal_price);
+		$premium_price = $db_handle->real_escape_string($premium_price);
+		$normal = $db_handle->real_escape_string($normal);
+		$premium = $db_handle->real_escape_string($premium);
 
 		$sql_addEvent = "INSERT INTO events ( name, date, description )
 					VALUES ( '".$name."', '".$date."', '".$description."');";
