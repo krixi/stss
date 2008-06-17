@@ -13,14 +13,14 @@ function display($data) {
 
 	if (count($data['oldCart'])>0) {
 
-		echo "<h2>Purchased Tickets</h2>";
+		echo "<h1>Purchased Tickets</h1>";
 
-		echo "<table>
+		echo "<table class=\"db_display\" id=\"bought\">
 
 	<tr>
 		<th>Event&nbsp;name</th>
 		<th>Seat&nbsp;category</th>
-		<th>Price&nbsp;(€)</th>
+		<th>Price&nbsp;(&euro;)</th>
 		<th>Number</th>
 		<th>Status</th>
 		<th>Total</th>
@@ -38,14 +38,14 @@ function display($data) {
 			echo "	<td> {$purchase['price']} </td>\n";
 			echo "	<td> {$purchase['number']} </td>\n";
 			echo "	<td> {$purchase['status']} </td>\n";
-			echo "	<td> {$sum}€ </td>\n";
+			echo "	<td> {$sum}&nbsp;&euro; </td>\n";
 			echo "</tr>\n\n";
 		}
 
 		echo "</table>\n";
 
 		echo "<br>\n<br>\n
-		Total sum of your purchase is: $total_sum<br>\n";
+		Total sum of your purchase is: $total_sum&nbsp;&euro;<br>\n";
 		echo "Please pay in advance per bank-transfer or pay during the event<br>\n<br>\n";
 
 		//Create pdf-document

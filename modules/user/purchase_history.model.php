@@ -15,6 +15,9 @@ function work() {
 	//return $result = array();
 	//with the results
 
+	
+	$result['errors'] = array();
+	
 	//Connect to database
 	$db_handle = @ new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -24,6 +27,7 @@ function work() {
 			return false;
 		}
 		else {
+			$result['errors'] = array();
 			$result['errors'][] = DB_ERROR;
 			return $result;
 		}
@@ -33,15 +37,17 @@ function work() {
 	$userID = $_SESSION['userID'];
 
 	//get all purchases of this user and name to the events etc.
-	$sql = 'SELECT * FROM purchases NATURAL JOIN events 
+	$sql = 'SELECT * FROM purchases NATURAL JOIN events
 			WHERE userID = '.$userID.' ORDER BY purchaseDate DESC;';
-	$sql_result = $db_handle->query($sql);
-
-	while ($row = $sql_result->fetch_array()){
-		$result['purchase_history'][] = $row;
+	if ($sql_result = $db_handle->query($sql)) {
+		while ($row = $sql_result->fetch_array()){
+			$result['purchase_history'][] = $row;
+		}
+	} else {
+		$result['errors'][] = QUERY_INVALID;
 	}
 
-
+	$db_handle->close();
 
 	return $result;
 }

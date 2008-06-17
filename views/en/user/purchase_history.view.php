@@ -5,6 +5,12 @@ function display($data) {
 
 	//output here page content generated out of results storend
 	//in array $data
+	
+	if (isset($data['errors'])) {
+		foreach ($data['errors'] as $error) {
+			printf("<span class=\"error\">%s</span>\n", getString($error));
+		}
+	}
 
 
 
@@ -14,8 +20,8 @@ function display($data) {
 	}
 	else
 	{
-		echo "<h2>Previously purchased tickets</h2>\n";
-		echo "<table>
+		echo "<h1>Previously purchased tickets</h1>\n";
+		echo "<table class=\"db_display\">
 
 	<tr>
 		<th>Event&nbsp;name</th>
@@ -25,8 +31,14 @@ function display($data) {
 		<th>Purchase&nbsp;date</th>	
 	</tr>";
 
+		$alt1 = "class=\"event_alt1\"";
+		$alt2 = "class=\"event_alt2\"";
+		$row_count = 0;
 		foreach ($data['purchase_history'] AS $row) {
-			echo "<tr>\n";
+			$this_row = ($row_count % 2 == 0) ? $alt1 : $alt2; 
+			$row_count++;
+			
+			printf("<tr %s>\n", $this_row);
 			echo "	<td> {$row['name']} </td>\n";
 			echo "	<td> {$row['category']} </td>\n";
 			echo "	<td> {$row['seatID']} </td>\n";

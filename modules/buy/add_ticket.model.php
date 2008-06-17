@@ -29,7 +29,12 @@ function work() {
 		
 		if (isset($_POST['normal']) && is_numeric($_POST['normal']) && $_POST['normal'] > 0) {
 			if ($normal_index >= 0) {
-				$_SESSION['cart'][$normal_index]['number'] += $_POST['normal'];
+				$sum = $_SESSION['cart'][$normal_index]['number'] + $_POST['normal'];
+				if ($sum <= $_POST['normal_available']) {
+					$_SESSION['cart'][$normal_index]['number'] += $_POST['normal'];
+				} else {
+					$result['error'] = NOT_ENOUGH_SEATS;
+				}
 			} else {
 				$_SESSION['cart'][] = array('category' => "normal", 
 											'price' => $_POST['normal_price'], 
@@ -44,7 +49,12 @@ function work() {
 		
 		if (isset($_POST['premium']) && is_numeric($_POST['premium']) && $_POST['premium'] > 0) {
 			if ($premium_index >= 0) {
-				$_SESSION['cart'][$premium_index]['number'] += $_POST['premium'];
+				$sum = $_SESSION['cart'][$normal_index]['number'] + $_POST['premium'];
+				if ($sum <= $_POST['premium_available']) {
+					$_SESSION['cart'][$premium_index]['number'] += $_POST['premium'];
+				} else {
+					$result['error'] = NOT_ENOUGH_SEATS;
+				}
 			} else {
 				$_SESSION['cart'][] = array('category' => "premium", 
 											'price' => $_POST['premium_price'], 
