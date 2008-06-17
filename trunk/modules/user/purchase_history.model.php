@@ -33,8 +33,7 @@ function work() {
 		}
 	}
 
-	//TODO: injection protection
-	$userID = $_SESSION['userID'];
+	$userID = $db_handle->real_escape_string($_SESSION['userID']);
 
 	//get all purchases of this user and name to the events etc.
 	$sql = "SELECT *, date_format(date, '%b %e, %Y at %k:%i') AS datef, 

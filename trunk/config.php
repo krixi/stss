@@ -95,4 +95,5 @@ define("DB_ERROR", 24);
 define("NOT_ENOUGH_SEATS", 25);
 define("CART_EMPTY", 26);
 define("MISSING_EVENTID", 28);
+define("CREDITCARD_INVALID", 30);
 ?>

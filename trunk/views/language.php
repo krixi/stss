@@ -104,6 +104,9 @@ function getEnglishString($desiredString) {
 	case MISSING_EVENTID:
 		return "Please specify an Event ID!";
 	break;
+	case CREDITCARD_INVALID:
+		return "Your Credit Card Information is not valid!";
+	break;
 	default:
 		return "IMPLEMENT ME: ".$desiredString;
 	break;

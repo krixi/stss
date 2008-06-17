@@ -8,7 +8,6 @@ function authenticate () {
 function work() {
 	$result = array();
 
-	//TODO: counter sql injection
 	$eventID = $_GET['eventID'];
 
 	$result['queryOK'] = false;
@@ -28,6 +27,8 @@ function work() {
 		}
 	}
 
+	$eventID = $db_handle->real_escape_string($eventID);
+	
 	$query = "SELECT *, date_format(event_cat_stats.date, '%b %e, %Y at %k:%i') AS datef 
 		FROM event_cat_stats NATURAL JOIN events WHERE eventID = ".$eventID;
 

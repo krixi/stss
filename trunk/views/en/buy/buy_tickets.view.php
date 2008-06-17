@@ -4,13 +4,15 @@
 function display($data) {
 	showHeader(EVENTS);
 
-//output here page content generated out of results storend
+	//output here page content generated out of results storend
 	//in array $data
 	if (isset($data['errors'])) {
 		foreach ($data['errors'] as $error) {
 			printf("<span class=\"error\">%s</span>\n", getString($error));
 		}
+
 	}
+
 
 	if (count($data['oldCart'])>0) {
 
@@ -48,7 +50,7 @@ function display($data) {
 					echo"<td></td>\n";
 					echo"<td>Seat Number</td>\n";
 					printf("<td>%04d</td>\n",$seat);
-					echo"<\tr>";
+					echo"</tr>\n\n";
 				}
 			}
 		}
@@ -57,7 +59,15 @@ function display($data) {
 
 		echo "<br>\n<br>\n
 		Total sum of your purchase is: $total_sum €<br>\n";
-		echo "Please pay in advance per bank-transfer or pay during the event<br>\n<br>\n";
+
+		if ($data['payment'] == 'banktransfer') {
+			echo "<br>\nPlease pay in advance per bank-transfer<br>\n<br>\n";
+			echo "To: STSS<br>\nBankaccount #:"
+			."5334323<br>\nBLZ: 80010030<br>\nDeusche Bank<br>\n";
+		}
+		elseif ($data['payment'] == 'creditCard') {
+			echo "<br>\nThank you for paying by credit card.<br>\n";
+		}
 
 		//Create pdf-document
 		require "includes/EZPDF/class.ezpdf.php";
@@ -73,25 +83,42 @@ function display($data) {
 			$total_sum += $sum;
 			$table[] = array("Name " => $row['name'],
 						"Seat category " => $row['category'],
-						"Price (€) " => $row['price'],
+						"Price (€) " => $row['price'].'€',
 						"Number " => $row['number'],
 						"Status " => $row['status'],
-						"total row (€) " => $sum);
+						"total row (€) " => $sum.'€');
+
+			if(isset($row['seats'])){
+				foreach ($row['seats'] AS $seat) {
+
+					$table_seats[] = array("Name " => $row['name'],
+						"Seat category " => $row['category'],
+						"Seat Number " => $seat);
+				}
+			}
 		}
 
 
 		$doc->selectFont('includes/EZPDF/fonts/Helvetica.afm');
 
 		$doc->ezImage('views/images/heading.jpg');
-		$doc->ezText("Purchased Tickets:\n", 20);
-
+		
+		$doc->ezText("Purchased tickets:\n", 20);
 		$doc->ezTable($table);
 
+		$doc->ezText("\nYour seats:\n", 20);
+		$doc->ezTable($table_seats);
+		
 		$doc->ezText("\nTotal SUM: $total_sum €\n", 15);
-		$doc->ezText("Please pay per Banktransfer:\nTo: STSS\nBankaccount #: 5334323\nBLZ: 80010030\nDeusche Bank", 10);
 
+		if ($data['payment'] == 'banktransfer') {
+			$doc->ezText("Please pay per Banktransfer:\nTo: STSS\nBankaccount #: 5334323\nBLZ: 80010030\nDeusche Bank", 10);
 
-		//$doc->addText('Hello World!', 50);
+		}
+		elseif ($data['payment'] == 'creditCard') {
+			$doc->ezText("Thankyou for Paying by Credit Card", 10);
+		}
+
 
 		$pdfcode = $doc->output();
 
@@ -109,7 +136,7 @@ function display($data) {
 		fclose($fp);
 
 
-		echo 'Bill as <a href="'.$fname.'" target="_blank">PDF</a>';
+		echo '<br>/nBill as <a href="'.$fname.'" target="_blank">PDF</a>';
 		//	echo '
 		//<SCRIPT LANGUAGE="JavaScript"><!--
 		//function go_now ()   { window.location.href = "'.$fname.'"; }
