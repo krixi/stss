@@ -23,6 +23,12 @@ h1 {
 
 a {
 	text-decoration:none;
+	color: #3399FF;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #33CCFF;	
 }
 
 /* messages displayed to user */
@@ -117,6 +123,15 @@ a {
 	background-color: #737A80;
 }
 
+.menu a.lang {
+	background-color: #FFFFFF;
+}
+
+.menu a.lang:hover {
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+}
+
 .menu a:hover{
 	background-color:#000000;
 	color: #FFFFFF;
@@ -168,23 +183,20 @@ a {
 	border: 1px solid #000000;
 }
 
-.button {
-	font: bold 11px Arial;
-	color:white;
-	margin: 0px 0px 0px 0px;
+a.button  {
+	font: bold 12px Arial;
 	padding: 3px 4px 3px 4px;
-	border: 1px dashed #737A80;
+	border: 1px solid #737A80;
 	background-color: #737A80;
 	text-transform:uppercase;
-}
-
-.button a {
 	color:#FFFFFF;
 }
 
-.button:hover {
+a.button:hover {
 	background-color:#000000;
 	border: 1px solid #000000;
+	color:#FFFFFF;
+	text-decoration: none;
 }
 
 .display_txt {
@@ -195,4 +207,56 @@ a {
 	width: 100%;
 }
 
+/* format database querys */
+.db_display td {
+	padding: 5px 25px 3px 2px;	
+	margin: 0px 0px 0px 0px;
+}
 
+.db_display th {
+	font-size: 20px;
+	padding: 0px 10px 0px 0px;
+}
+
+.db_display .event_alt1 {
+	background-color: #EDEDED;
+}
+
+
+.db_display .event_alt2 {
+	background-color: #EFFFFF;
+}
+
+#event_detail_admin {
+	border: 1px solid #000000;
+	font-size: 12px;
+}
+
+#event_detail_admin th {
+	font-size: 14px;	
+}
+
+#stats_total {
+	border: 1px solid #000000;
+	background-color: #EFEFEF;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2px 2px 2px 2px;
+}
+
+#stats_total th {
+	padding: 0px 10px 0px 10px;
+}
+
+#cart {
+	border: 1px solid #000000;
+	background-color: #EFEFEF;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2px 2px 2px 2px;
+}
+#cart th {
+	font-size: 23px;
+}

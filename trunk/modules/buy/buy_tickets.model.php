@@ -4,13 +4,13 @@
 function authenticate () {
 	//implement your own or call either
 	return authUser();
+	//or
+	//authUser();
 	//defined in Framework
 }
 
 function work() {
 	$result = array();
-
-	$userID = mysql_real_escape_string($_SESSION['userID']);
 
 	// Expecting an array named 'cart' filled with single purchases as eventid, name, category,
 	// price and number of tickets in the session
@@ -37,9 +37,10 @@ function work() {
 
 	foreach ($purchases AS $purchase) {
 		//counter sql-injection - userID is already checked (through auth)
-		$eventID = mysql_real_escape_string($purchase['eventID']);
-		$category = mysql_real_escape_string($purchase['category']);
-		$number = mysql_real_escape_string($purchase['number']);
+		$userID = $db_handle->real_escape_string($_SESSION['userID']);
+		$eventID = $db_handle->real_escape_string($purchase['eventID']);
+		$category = $db_handle->real_escape_string($purchase['category']);
+		$number = $db_handle->real_escape_string($purchase['number']);
 		$status = 'pending';
 
 
@@ -48,7 +49,9 @@ function work() {
 		WHERE eventID = $eventID AND category = '$category'";
 		$sql_result = $db_handle->query($sql_query_check_user)->fetch_array();
 
+		//TODO:nicer method to see if result is empty?
 		if (!$sql_result) {
+			//TODO: >>possible attack - write to logfile all details
 			$result['errors'][] = DB_ERROR;
 			return $result;
 		}
@@ -114,6 +117,5 @@ function work() {
 
 	return $result;
 }
-
 
 ?>

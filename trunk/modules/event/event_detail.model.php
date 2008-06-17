@@ -28,14 +28,21 @@ function work() {
 		}
 	}
 
-
-
-	$query = 'SELECT * FROM event_cat_stats WHERE eventID = '.$eventID;
+	$query = "SELECT *, date_format(event_cat_stats.date, '%b %e, %Y at %k:%i') AS datef 
+		FROM event_cat_stats NATURAL JOIN events WHERE eventID = ".$eventID;
 
 	if ($sql_result = $db_handle->query($query)) {
+		$result['event_detail'] = array();
 		while($row = $sql_result->fetch_array()) {
-			$result['data'][] = $row;
+			$result['event_detail'][] = $row;
+			$result['event_name'] = $row['name'];
+			$result['date'] = $row['datef'];
+			$result['description'] = $row['description'];
 		}
+		if (!isset($result['event_name'])) {
+			$result['event_name'] = "No name available!";
+		}
+		$result['eventID'] = $eventID;
 		$sql_result->close();
 		$result['queryOK'] = true;
 	} else {

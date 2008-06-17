@@ -6,21 +6,32 @@ $currentPage is the input parameter to that function,
 it contains the string to be used as the page title
 *************/
 
+switch($_SESSION['lang']) {
+	case GERMAN:
+		// show the english link if it's currently german
+		printf("<a class=\"lang\" href=\"index.php?lang=en\"><img src=\"views/images/en.png\" alt=\"EN\" title=\"English\"></a>\n");
+	break;
+	case ENGLISH: // fall through, default to english
+	default:
+		printf("<a class=\"lang\" href=\"index.php?lang=de\"><img src=\"views/images/de.png\" alt=\"DE\" title=\"Deutsch\"></a>\n");
+	break;
+	
+}
+
 $currentText = " id=\"current\"";
 
 printf("<ul>\n");
-
-printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", 
-	($page == INDEX) ? $currentText : '', getString(INDEX), getString(INDEX));
-
-printf("<li%s><a href=\"index.php?module=event&action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", 
-	($page == EVENTS) ? $currentText : '', getString(EVENTS), getString(EVENTS));
 
 if ($_SESSION['admin'] == true && $_SESSION['login'] == true) {
 	printf("<li%s><a href=\"index.php?module=user&action=admin\" title=\"%s\">%s</a></li>\n", 
 		($page == ADMIN) ? $currentText : '', getString(ADMIN), getString(ADMIN));
 } // END if admin
 
+printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", 
+	($page == INDEX) ? $currentText : '', getString(INDEX), getString(INDEX));
+
+printf("<li%s><a href=\"index.php?module=event&action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", 
+	($page == EVENTS) ? $currentText : '', getString(EVENTS), getString(EVENTS));
 
 if ($_SESSION['login'] == false) {
 	printf("<li%s><a href=\"index.php?module=user&action=join\" title=\"%s\">%s</a></li>\n", 
@@ -46,10 +57,12 @@ onfocus="if (this.value == '<?php echo getString(PASSWORD); ?>') this.value = ''
 </div>
 <?php
 } else { // login == true
-	printf("<li%s><a href=\"index.php?module=buy&action=view_cart\" title=\"%s\">%s</a></li>", 
-		($page == VIEW_CART) ? $currentText : '', getString(VIEW_CART), getString(VIEW_CART));
-	printf("<li%s><a href=\"index.php?module=user&action=purchase_history\" title=\"%s\">%s</a></li>", 
-		($page == PURCHASES) ? $currentText : '', getString(PURCHASES), getString(PURCHASES));
+	if (!authAdmin()) {
+		printf("<li%s><a href=\"index.php?module=buy&action=view_cart\" title=\"%s\">%s</a></li>", 
+			($page == VIEW_CART) ? $currentText : '', getString(VIEW_CART), getString(VIEW_CART));
+		printf("<li%s><a href=\"index.php?module=user&action=purchase_history\" title=\"%s\">%s</a></li>", 
+			($page == PURCHASES) ? $currentText : '', getString(PURCHASES), getString(PURCHASES));
+	}
 	printf("<li%s><a href=\"index.php?module=user&action=logout\" title=\"%s\">%s</a></li>", 
 		($page == LOGOUT) ? $currentText : '', getString(LOGOUT), getString(LOGOUT));
 } // end "if logged in" statement

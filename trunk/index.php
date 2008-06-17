@@ -6,7 +6,6 @@ session_start();
 require_once('config.php');
 require_once('includes/auth.php');
 require_once('views/common.php');
-require_once('includes/ticket.class.php');
 
 
 /*
@@ -35,6 +34,10 @@ if (isset($_GET['module'])) {
 } else {
 	$module = DEFAULT_MODULE;
 	$action = DEFAULT_ACTION;
+}
+
+if (isset($_GET['lang']) && $_GET['lang'] != '') {
+	$_SESSION['lang'] = $_GET['lang'];
 }
 
 // initialize file paths to be used for requested action
