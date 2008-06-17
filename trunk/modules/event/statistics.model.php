@@ -83,6 +83,7 @@ function work() {
 		}
 	}
 	
+	//don't need injection protection, all variables are strings set by php - not user
 	$inverse_order = (isset($_GET['dir'])) ? " DESC" : "";
 	//get statistics by event
 	$sql = "SELECT * FROM event_stats".$event_order.$inverse_order;
@@ -98,7 +99,7 @@ function work() {
 		$result['errors'][] = QUERY_INVALID;
 	}
 	//get statistics for all events
-
+	//TODO: use view
 	$sql = 'SELECT SUM(amount) AS amount, SUM(sold) AS sold, SUM(available) as available,
 		 SUM(total_rev) AS revenue, ((SUM(sold) / SUM(amount))*100) AS perc_sold, 
 		 ((SUM(available) / SUM(amount))*100) AS perc_unsold FROM `event_stats` ';
