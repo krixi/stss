@@ -46,10 +46,10 @@ function display($data) {
 		printf("<span class=\"total\">Total: %s &euro;</span>\n", $total_price);
 		printf("</td>\n");
 		printf("<td colspan=\"2\">\n");
-		printf("<a href=\"index.php?module=buy&action=buy_tickets\" title=\"Checkout\" class=\"button\">Checkout</a>\n");
+		printf("<a href=\"index.php?module=buy&action=select_payment\" title=\"Checkout\" class=\"button\">Checkout</a>\n");
 		printf("</td>\n");
 		printf("<td>\n");
-		printf("<input class=\"submit\" type=\"submit\" value=\"Update\" />\n");
+		printf("<input id=\"cart_button\" class=\"submit\" type=\"submit\" value=\"Update\" />\n");
 		printf("</form>\n");
 		printf("</td>\n");
 		printf("</tr>\n");

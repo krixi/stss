@@ -32,7 +32,9 @@ function display($result) {
 	print "</table>\n\n";
 
 	printf("<a class=\"button\" href=\"index.php?module=event&action=show_upcoming_events\">Show Upcoming</a>\n");
-
+	if (authAdmin()) {
+		printf("<a class=\"button\" href=\"index.php?module=event&action=add\">Add New</a>\n");
+	}
 
 	// print "Eventlisting as pdf";
 	showFooter();

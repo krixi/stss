@@ -7,7 +7,7 @@
 * @author Michael Prilop
 */
 // Set to true for debugging
-define("DEBUG", true);
+define("DEBUG", false);
 
 
 // Timeout in minutes
