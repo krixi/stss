@@ -15,6 +15,7 @@ function display($data) {
 
 
 
+	//TODO perhaps display the price to the user for what they bought?
 	if(!isset($data['purchase_history'])){
 		echo "<h2>You have not yet made any purchases</h2>\n";
 	}
@@ -42,8 +43,8 @@ function display($data) {
 			echo "	<td> {$row['name']} </td>\n";
 			echo "	<td> {$row['category']} </td>\n";
 			echo "	<td> {$row['seatID']} </td>\n";
-			echo "	<td> {$row['date']} </td>\n";
-			echo "	<td> {$row['purchaseDate']} </td>\n";
+			echo "	<td> {$row['datef']} </td>\n";
+			echo "	<td> {$row['purchaseDatef']} </td>\n";
 			echo "</tr>\n\n";
 		}
 

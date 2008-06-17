@@ -37,8 +37,10 @@ function work() {
 	$userID = $_SESSION['userID'];
 
 	//get all purchases of this user and name to the events etc.
-	$sql = 'SELECT * FROM purchases NATURAL JOIN events
-			WHERE userID = '.$userID.' ORDER BY purchaseDate DESC;';
+	$sql = "SELECT *, date_format(date, '%b %e, %Y at %k:%i') AS datef, 
+		date_format(purchaseDate, '%b %e, %Y at %k:%i') AS purchaseDatef
+		FROM purchases NATURAL JOIN events
+		WHERE userID = ".$userID." ORDER BY purchaseDate DESC;";
 	if ($sql_result = $db_handle->query($sql)) {
 		while ($row = $sql_result->fetch_array()){
 			$result['purchase_history'][] = $row;
