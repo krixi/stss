@@ -10,7 +10,32 @@ function authenticate () {
 
 function work() {
 	$result = array();
+	$status = 'reserved'; //by default if not payed by credit card
+	$payment = 'banktransfer'; //default payment method
 
+	//Find out if payment is through credit-card or other method
+	if (isset($_POST['cardholder'])
+	&& isset($_POST['number'])
+	&& isset($_POST['type'])) {
+		
+		require_once('includes/CreditCard.php');
+		
+		//TODO: validate properly
+		//$creditCardValid = Validate_Finance_CreditCard::number($_POST['number'], $_POST['type']);	
+		$creditCardValid = true;
+		
+		if($creditCardValid) {
+			$status = 'paid';
+			$payment = 'creditCard';
+			$creditCardHolder = $_POST['cardholder'];
+			$creditCardNumber = $_POST['number'];
+			$creditCardType = $_POST['type'];
+		}
+		else {
+			$result['errors'][] = CREDITCARD_INVALID;
+			return $result;
+		}
+	}
 
 	// Expecting an array named 'cart' filled with single purchases as eventid, name, category,
 	// price and number of tickets in the session
@@ -34,6 +59,8 @@ function work() {
 		}
 	}
 
+	
+	$totalPayment = 0; //use this as credit-card payment
 
 	foreach ($purchases AS $purchase) {
 		//counter sql-injection - userID is already checked (through auth)
@@ -41,7 +68,6 @@ function work() {
 		$eventID = $db_handle->real_escape_string($purchase['eventID']);
 		$category = $db_handle->real_escape_string($purchase['category']);
 		$number = $db_handle->real_escape_string($purchase['number']);
-		$status = 'pending';
 
 
 		//check if event and required category really exists
@@ -56,11 +82,12 @@ function work() {
 
 
 		//check if there are enough available tickets in this category and if not inform user
-		$sql_query_seats = "SELECT available FROM event_cat_stats
+		$sql_query_seats = "SELECT available, price FROM availableseats
 		WHERE eventID = $eventID AND category = '$category'";
 
 		$sql_result = $db_handle->query($sql_query_seats)->fetch_array();
 		$availableSeats = $sql_result[0];
+		$categoryPrice = $sql_result[1];
 
 		if ($number > $availableSeats){
 			$purchase['status'] = 'not_enough_seats';
@@ -83,7 +110,7 @@ function work() {
 			else {
 				$highestSeatID = 1;
 			}
-			
+				
 			//get current datetime from server
 			$datetime = date("Y-m-d H:i:s");
 
@@ -94,17 +121,19 @@ function work() {
 				$sql_insert_query = "INSERT INTO purchases (eventID, userID, seatID, category, purchaseDate, status)
 				VALUES ($eventID, $userID, $newSeat, '$category', '$datetime', '$status')";
 				$db_handle->query($sql_insert_query);
-				
+
 				$purchase['seats'][] = $newSeat;
+				
+				$totalPayment += $categoryPrice;
 
 
 				if (DEBUG) echo "SQL_insert: $sql_insert_query<br>";
 
 			}
 
-			$purchase['status'] = 'reserved for you';
+			$purchase['status'] = $status;
 			$oldCart[]=$purchase;
-				
+
 			$db_handle->query("UNLOCK TABLES");
 
 		}
@@ -115,7 +144,21 @@ function work() {
 
 
 	$db_handle->close();
+	
+	
+	/*
+	 * CREDIT CARD PAYMENT
+	 * Connect here to a payment Portal and charge the user
+	 */
+	$totalPayment; //the total amount to charge
+	$creditCardHolder; //Cardholder
+	$creditCardNumber; //credit card number
+	$creditCardType; //credit card type
+	$creditCardValid; //credit card validity check by PAIR-package
+	//END CREDIT CARD PAYMENT
 
+	$result['totalPayment'] = $totalPayment;
+	$result['payment'] = $payment;
 	$result['oldCart'] = $oldCart;
 
 	return $result;

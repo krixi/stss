@@ -1,11 +1,8 @@
 <?php
-//TODO: login with wrong password should not display "Invalid email" error
 //TODO: nicer welcome page
 //TODO: all db-errors should only display generic error if DEBUG=false
 //TODO: set error-reporting level to 0 by config.php?
-//TODO: setup google-analytics to track webusage
 //TODO: url-rewrite?
-//TODO: nicer tables -> numerical values align right etc.
 
 
 /*
