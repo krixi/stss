@@ -62,7 +62,7 @@ function display($data) {
 
 		if ($data['payment'] == 'banktransfer') {
 			echo "<br>\nBitte zahlen Sie per Vorauskasse:<br>\n<br>\n";
-			echo "Empfänger: STSS<br>\Kontonummer:"
+			echo "Empfänger: STSS<br>\nKontonummer: "
 			."5334323<br>\nBLZ: 80010030<br>\nDeusche Bank<br>\n";
 		}
 		elseif ($data['payment'] == 'creditCard') {
@@ -112,7 +112,7 @@ function display($data) {
 		$doc->ezText("\nGesamtsumme: $total_sum €\n", 15);
 
 		if ($data['payment'] == 'banktransfer') {
-			$doc->ezText("Bitte zahlen Sie per Vorrauskasse:\nAn: STSS\nBankkonto: 5334323\nBLZ: 80010030\nDeusche Bank", 10);
+			$doc->ezText("Bitte zahlen Sie per Vorauskasse:\nAn: STSS\nBankkonto: 5334323\nBLZ: 80010030\nDeusche Bank", 10);
 
 		}
 		elseif ($data['payment'] == 'creditCard') {
@@ -136,7 +136,7 @@ function display($data) {
 		fclose($fp);
 
 
-		echo '<br>/nRechnung als <a href="'.$fname.'" target="_blank">PDF</a>';
+		echo "<br>/n".'Rechnung als <a href="'.$fname.'" target="_blank">PDF</a>';
 		//	echo '
 		//<SCRIPT LANGUAGE="JavaScript"><!--
 		//function go_now ()   { window.location.href = "'.$fname.'"; }
