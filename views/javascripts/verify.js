@@ -1,5 +1,10 @@
 // JavaScript Document
 
+function isPass(word) {
+	evaluator = /^[a-z0-9]{6}[a-z0-9]*$/i;
+	return evaluator.test(word);
+}
+
 function isBlank (word) {
 	if (word == null || word == "") {
 		return true;
@@ -15,7 +20,7 @@ function isAlpha(word) {
 }
 
 function isName(word) {
-	evaluator = /^[a-z]+$/i;
+	evaluator = /^[a-z]+( ?[a-z]+)*$/i;
 	return evaluator.test(word);
 }
 
@@ -23,6 +28,14 @@ function isEmail(word) {
 	// todo: add underscores.
 	evaluator = /^[a-z0-9]+(\.[a-z0-9]+)*@[a-z0-9]+(\.[a-z0-9]+)+$/i;
 	return evaluator.test(word);
+}
+
+function checkPass(element) {
+	if (!isPass(element.value)) {
+		alert(element.description + " must be at least 6 alpha-numeric characters long.");
+		return false;
+	}
+	return true;
 }
 
 function checkBlank(element) {
@@ -53,7 +66,7 @@ function checkEmail(element) {
 
 function checkName(element) {
 	if (!isName(element.value)) {
-		alert(element.description + " must be one word consisting of alphabetical characters.");
+		alert(element.description + " must consist of one or more words made of alphabetical characters.");
 		return false;
 	}
 	return true;
@@ -70,6 +83,10 @@ function verifyElement(element) {
 		}
 		
 		if (element.isEmail && !checkEmail(element)) {
+			return false;
+		}
+		
+		if (element.isPassword && !checkPass(element.value)) {
 			return false;
 		}
 	}
@@ -103,6 +120,10 @@ function realtime_verify(element) {
 		}
 		
 		if (element.isEmail && !isEmail(element.value)) {
+			valid = false;
+		}
+		
+		if (element.isPassword && !isPass(element.value)) {
 			valid = false;
 		}
 	}

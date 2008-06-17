@@ -55,6 +55,13 @@ define("DB_USER", "root");
 define("DB_PASS", "admin");
 define("DB_NAME", "stss");
 
+// Defaults for adding a new event
+define("DEFAULT_NORMAL", 5);
+define("DEFAULT_PREMIUM", 5);
+define("DEFAULT_NORMAL_PRICE", 10);
+define("DEFAULT_PREMIUM_PRICE", 20);
+
+
 // Constants to represent strings which need displaying in multiple languages,
 // Used when calling getString() in language.php and showHeader/endHeader from common.php
 define("INDEX", 1);

@@ -93,6 +93,8 @@ size="30" onkeyup="realtime_verify(this);" <?php if (isset($data['email'])) prin
 	document.joinForm.email.isEmail = true;
 	document.joinForm.f_name.isName = true;
 	document.joinForm.l_name.isName = true;
+	document.joinForm.password1.isPassword = true;
+	document.joinForm.password2.isPassword = true;
 	document.joinForm.email.description = "E-Mail address";
 	document.joinForm.f_name.description = "First Name";
 	document.joinForm.l_name.description = "Last Name";
