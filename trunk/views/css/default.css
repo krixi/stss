@@ -249,14 +249,34 @@ a.button:hover {
 	padding: 0px 10px 0px 10px;
 }
 
+/* Cart formatting */
 #cart {
 	border: 1px solid #000000;
 	background-color: #EFEFEF;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 2px 2px 2px 2px;
+	padding: 0;
+	width: 90%;
 }
 #cart th {
 	font-size: 23px;
+}
+
+.total {
+	display:block;
+	width: 100%;
+	background-color: #222222;
+	padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-left:auto;
+	margin-right:auto;
+	font-size: 20px;
+	color: #FFFFFF;	
+}
+
+#bought {
+	border: 1px dotted #000000;
+	width: 100%;
+	text-align: center;
 }

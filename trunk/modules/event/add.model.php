@@ -30,8 +30,10 @@ function work() {
 		$result['verified'] = true;
 		
 		$name = strip_tags($_POST['name']);
+		$name = addslashes($name);
 		$date = strip_tags($_POST['date']);
 		$description = strip_tags($_POST['description']);
+		$description = addslashes($description);
 		$normal = strip_tags($_POST['normal']);
 		$normal_price = strip_tags($_POST['normal_price']);
 		$premium = strip_tags($_POST['premium']);
@@ -76,7 +78,7 @@ function work() {
 				if ($sql_result = $db_handle->query($sql_getEventId)) {
 					if ($sql_result->num_rows == 1) {
 						$row = $sql_result->fetch_array(MYSQLI_ASSOC);
-						$eventId = 
+						
 						
 						$sql_addSeats = "INSERT INTO seats (eventID, category, price, amount) 
 							VALUES ('".$row['eventID']."', 'normal', '".$normal_price."', '".$normal."'), 
@@ -90,9 +92,17 @@ function work() {
 			}
 		}
 		
+		
 		if (!$result['added']) {
+			if (DEBUG) {
+				echo $sql_addEvent."<br>";
+				echo $sql_getEventId."<br>";
+				echo $sql_addSeats."<br>";
+			}
 			$result['errors'][] = QUERY_INVALID;
 		} 
+		
+		$db_handle->close();
 	}
 	return $result;
 }
