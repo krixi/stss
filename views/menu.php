@@ -23,18 +23,18 @@ $currentText = " id=\"current\"";
 printf("<ul>\n");
 
 if ($_SESSION['admin'] == true && $_SESSION['login'] == true) {
-	printf("<li%s><a href=\"index.php?module=user&action=admin\" title=\"%s\">%s</a></li>\n", 
+	printf("<li%s><a href=\"index.php?module=user&amp;action=admin\" title=\"%s\">%s</a></li>\n", 
 		($page == ADMIN) ? $currentText : '', getString(ADMIN), getString(ADMIN));
 } // END if admin
 
 printf("<li%s><a href=\"index.php\" title=\"%s\">%s</a></li>\n", 
 	($page == INDEX) ? $currentText : '', getString(INDEX), getString(INDEX));
 
-printf("<li%s><a href=\"index.php?module=event&action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", 
+printf("<li%s><a href=\"index.php?module=event&amp;action=show_upcoming_events\" title=\"%s\">%s</a></li>\n", 
 	($page == EVENTS) ? $currentText : '', getString(EVENTS), getString(EVENTS));
 
 if ($_SESSION['login'] == false) {
-	printf("<li%s><a href=\"index.php?module=user&action=join\" title=\"%s\">%s</a></li>\n", 
+	printf("<li%s><a href=\"index.php?module=user&amp;action=join\" title=\"%s\">%s</a></li>\n", 
 		($page == JOIN) ? $currentText : '', getString(JOIN), getString(JOIN));
 	printf("<li%s><a onclick=\"new Effect.toggle('login_form','appear'); return false;\" title=\"%s\">%s</a></li>\n",
 		($page == LOGIN) ? $currentText : '', getString(LOGIN), getString(LOGIN));
@@ -58,12 +58,12 @@ onfocus="if (this.value == '<?php echo getString(PASSWORD); ?>') this.value = ''
 <?php
 } else { // login == true
 	if (!authAdmin()) {
-		printf("<li%s><a href=\"index.php?module=buy&action=view_cart\" title=\"%s\">%s</a></li>", 
+		printf("<li%s><a href=\"index.php?module=buy&amp;action=view_cart\" title=\"%s\">%s</a></li>", 
 			($page == VIEW_CART) ? $currentText : '', getString(VIEW_CART), getString(VIEW_CART));
-		printf("<li%s><a href=\"index.php?module=user&action=purchase_history\" title=\"%s\">%s</a></li>", 
+		printf("<li%s><a href=\"index.php?module=user&amp;action=purchase_history\" title=\"%s\">%s</a></li>", 
 			($page == PURCHASES) ? $currentText : '', getString(PURCHASES), getString(PURCHASES));
 	}
-	printf("<li%s><a href=\"index.php?module=user&action=logout\" title=\"%s\">%s</a></li>", 
+	printf("<li%s><a href=\"index.php?module=user&amp;action=logout\" title=\"%s\">%s</a></li>", 
 		($page == LOGOUT) ? $currentText : '', getString(LOGOUT), getString(LOGOUT));
 } // end "if logged in" statement
 
