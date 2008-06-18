@@ -61,6 +61,11 @@ function display($result) {
 				printf("</form><br />\n");
 			}
 			
+			if (!authUser()) {
+				printf("<p>Bitte <a class=\"button\" onclick=\"new Effect.toggle('login_form','appear'); return false;\">%s</a> um tickets zu kaufen</p>\n",
+					getString(LOGIN));
+			}
+			
 			printf("<h3>Beschreibung: </h3>\n");
 			if (!isset($result['description'])) {
 				printf("Leider keine weiteren Informationen verfügbar");
