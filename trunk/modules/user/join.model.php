@@ -116,6 +116,11 @@ function work() {
 										
 										// Database entry was successful.
 										$result['added'] = true;
+										
+										// Log in User
+										if (authenticateUser($result['userID'], $_POST['password1'], $_SESSION['userID'], $_SESSION['admin'], $_SESSION['user'] )) {
+											$_SESSION['login'] = true;
+										}
 									}
 								}
 							}

@@ -1,13 +1,19 @@
 <?php
 
 function display($data) {
-	showHeader(JOIN);
+	showHeader(INDEX);
 	//output here page content generated out of results storend
 	//in array $data
 	if ($data['added'] == true) {
-		printf("Welcome %s %s.<br />\n", $data['f_name'], $data['l_name']);
-		printf("You may now log in using the email you specified: %s<br />\n", $data['email']);
-		printf("or your generated user ID: %s<br />\n", $data['userID']);
+		printf("<table class=\"db_display\" id=\"cart\">\n");
+		printf("<tr>\n");
+		printf("<td><h2>Willkommen %s %s.</h2></td>\n", $data['f_name'], $data['l_name']);
+		printf("</tr>\n");
+		printf("<tr>\n");
+		printf("<td>Sie sind nun eingelogged.<br>\nIn Zukunft können Sie zumm einloggen ihre Email Adresse: %s<br />\noder ihre Benutzernummer nehmen: %s<br />\n\n</td>", $data['email'], $data['userID']);
+		printf("</tr>\n");
+		printf("</table>\n");
+		
 	} else {
 		// If they attempted to join, display any error messages
 		if (isset($data['errors'])) {

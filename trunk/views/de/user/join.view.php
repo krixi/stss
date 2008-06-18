@@ -1,13 +1,19 @@
 <?php
 
 function display($data) {
-	showHeader(JOIN);
+	showHeader(INDEX);
 	//output here page content generated out of results storend
 	//in array $data
 	if ($data['added'] == true) {
-		printf("Willkommen %s %s.<br />\n", $data['f_name'], $data['l_name']);
-		printf("Sie können sich jetzt einloggen indem sie ihre Email nutzen: %s<br />\n", $data['email']);
-		printf("oder ihre Benutzernummer: %s<br />\n", $data['userID']);
+		printf("<table class=\"db_display\" id=\"cart\">\n");
+		printf("<tr>\n");
+		printf("<td><h2>Welcome %s %s.</h2></td>\n", $data['f_name'], $data['l_name']);
+		printf("</tr>\n");
+		printf("<tr>\n");
+		printf("<td>You are now logged in.<br>\nIn future you may log in using the email you specified: %s<br />\nor your generated user ID: %s<br />\n\n</td>", $data['email'], $data['userID']);
+		printf("</tr>\n");
+		printf("</table>\n");
+		
 	} else {
 		// If they attempted to join, display any error messages
 		if (isset($data['errors'])) {
@@ -21,7 +27,7 @@ function display($data) {
 <table>
 <tr>
 <td>
-<span class="display_txt">Vorname:</span>
+<span class="display_txt">First Name:</span>
 </td>
 <td>
 <input class="textinput" id="f_name" name="f_name" type="text" 
@@ -33,7 +39,7 @@ size="30" onkeyup="realtime_verify(this);" <?php if (isset($data['f_name'])) pri
 </tr>
 <tr>
 <td>
-<span class="display_txt">Nachname:</span>
+<span class="display_txt">Last Name:</span>
 </td>
 <td>
 <input class="textinput" id="l_name" name="l_name" type="text" 
@@ -68,7 +74,7 @@ size="30" onkeyup="realtime_verify(this);" <?php if (isset($data['email'])) prin
 </tr>
 <tr>
 <td>
-<span class="display_txt">Passwort verifizieren:</span>
+<span class="display_txt">Verify Password:</span>
 </td>
 <td>
 <input class="textinput" id="password2" name="password2" type="password" size="30" onkeyup="realtime_verify(this);" />
