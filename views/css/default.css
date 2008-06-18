@@ -181,6 +181,7 @@ a:hover {
 	border: 1px solid #737A80;
 	background-color: #737A80;
 	text-transform:uppercase;
+	cursor: pointer;
 }
 
 .submit:hover{
@@ -195,6 +196,7 @@ a.button  {
 	background-color: #737A80;
 	text-transform:uppercase;
 	color:#FFFFFF;
+	cursor: pointer;
 }
 
 a.button:hover {
