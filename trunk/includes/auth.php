@@ -96,7 +96,7 @@ uses regular expressions to verify the user's input.
 returns true if the string matched and false if not.
 ****************************/
 function verifyEmail($email) {
-	return eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email);
+	return eregi("^[a-z0-9][_a-z0-9-]*(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", $email);
 }
   
 

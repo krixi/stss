@@ -20,7 +20,8 @@ function display($data) {
 <span class="display_txt">Event name</span>
 </td>
 <td colspan="2">
-<input class="textinput" name="name" id="name" type="text" size="50" />
+<input class="textinput" name="name" id="name" type="text" size="50" 
+	<?php if(isset($_POST['name'])) echo "value=\"".$_POST['name']."\""; ?> />
 </td>
 </tr>
 <tr>
@@ -28,10 +29,6 @@ function display($data) {
 <span class="display_txt">Occurrs:</span>
 </td>
 <td colspan="3">
-<!-- 
-<input class="textinput" name="date" id="date" type="text" size="30" 
-value="0000-00-00 00:00" onfocus="if (this.value == '0000-00-00 00:00') this.value = '';" onblur="if (this.value == '') this.value = '0000-00-00 00:00';"/>
--->
 <select name="month">
 <option value="01">Jan</option>
 <option value="02">Feb</option>
@@ -60,7 +57,6 @@ for($i=2008; $i<=2050; $i++) {
 }
 ?>
 </select>
-
 time:
 <select name="time">
 <option>00:00</option>
@@ -91,7 +87,7 @@ time:
 <option>12:30</option>
 <option>13:00</option>
 <option>13:30</option>
-<option>14:00</option>
+<option selected="true">14:00</option>
 <option>14:30</option>
 <option>15:00</option>
 <option>15:30</option>
@@ -119,7 +115,8 @@ time:
 <span class="display_txt">Description</span>
 </td>
 <td colspan="3">
-<textarea class="textinput" name="description" id="description" cols="50" rows="8"></textarea>
+<textarea class="textinput" name="description" id="description" cols="50" rows="8">
+<?php if(isset($_POST['description'])) echo $_POST['description']; ?></textarea>
 </td>
 </tr>
 <tr>

@@ -25,8 +25,7 @@ function isName(word) {
 }
 
 function isEmail(word) {
-	// todo: add underscores.
-	evaluator = /^[a-z0-9]+(\.[a-z0-9]+)*@[a-z0-9]+(\.[a-z0-9]+)+$/i;
+	evaluator = /^[a-z0-9][_a-z0-9-]*(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i;
 	return evaluator.test(word);
 }
 

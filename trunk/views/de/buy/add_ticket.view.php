@@ -11,7 +11,7 @@ function display($data) {
 	printf("%s Tickets wurden dem Einkaufswagen hinzugefügt und sind für Sie reserviert<br />\n<br />\n", $data['numAdded']);
 	
 	echo "Bitte vergessen Sie nicht ihren Einkauf auszuchecken:\t
-	<a class=\"button\" href=\"index.php?module=buy&action=view_cart\">checkout<a><br>\n";
+	<a class=\"button\" href=\"index.php?module=buy&action=view_cart\">checkout</a><br>\n";
 	
 	showFooter();
 }

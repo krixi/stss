@@ -34,7 +34,6 @@ function work() {
 		
 		$name = strip_tags($_POST['name']);
 		$name = addslashes($name);
-		//$date = strip_tags($_POST['date']);
 		$description = strip_tags($_POST['description']);
 		$description = addslashes($description);
 		$normal = strip_tags($_POST['normal']);
@@ -43,7 +42,6 @@ function work() {
 		$premium_price = strip_tags($_POST['premium_price']);
 		
 		$date_time = $_POST['year']."-".$_POST['month']."-".$_POST['date']." ".$_POST['time'];
-		echo $date_time;
 		
 		if (!is_numeric($normal) || !is_numeric($premium)) {
 			$result['verified'] = false;
@@ -74,9 +72,9 @@ function work() {
 		}
 		
 		//using sql-injection protection
-		$date = $db_handle->real_escape_string($date);
+		$date_time = $db_handle->real_escape_string($date_time);
 		$name = $db_handle->real_escape_string($name);
-		$row['eventID'] = $db_handle->real_escape_string($row['eventID']);
+		//$row['eventID'] = $db_handle->real_escape_string($row['eventID']);
 		$normal_price = $db_handle->real_escape_string($normal_price);
 		$premium_price = $db_handle->real_escape_string($premium_price);
 		$normal = $db_handle->real_escape_string($normal);
