@@ -9,6 +9,11 @@ function authenticate () {
   //defined in Framework
 }
 
+/*
+ * registers a user in the database
+ * password is saved as random-salted sha1
+ * verifies user input to be standard-conform (email)
+ */
 function work() {
 	$result = array();
 	
@@ -19,6 +24,7 @@ function work() {
 		$result['verified'] = true;
 		$result['errors'] = array();
 		
+		//checking if user-input is okay		
 		if ($_POST['password1'] <> $_POST['password2']) {
 			$result['verified'] = false;
 			$result['errors'][] = PASSWORD_MISMATCH;

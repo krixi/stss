@@ -3,6 +3,9 @@ function authenticate () {
   return authNO();
 }
 
+/*
+ * logs out user, destroys session and reinitiates session with new id
+ */
 function work() {
 	$result = array();
 	

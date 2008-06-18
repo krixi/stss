@@ -10,6 +10,9 @@ function authenticate () {
   return authAdmin();
   }
 
+/*
+ * Does not do anything at the time
+ */
 function work() {
   $result = array();
   //Do your work and

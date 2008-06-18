@@ -3,6 +3,10 @@ function authenticate () {
   return authNO();
 }
 
+/*
+ * checks if user provided correct username/pwd combination
+ * sets $_SESSION variables for user and admin etc.
+ */
 function work() {
 	$result = array();
 	

@@ -4,6 +4,10 @@ function authenticate () {
 	return authNO();
 }
 
+/*
+ * returns an array of all upcoming events
+ * (all events after current mysql-servertime)
+ */
 function work() {
 	$result = array();
 	

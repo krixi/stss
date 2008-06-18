@@ -5,6 +5,9 @@ function authenticate () {
 	return authNO();
 }
 
+/*
+ * Returns all details to a given eventID
+ */
 function work() {
 	$result = array();
 
@@ -29,6 +32,7 @@ function work() {
 
 	$eventID = $db_handle->real_escape_string($eventID);
 	
+	//gets the event details from the statistics view and event table
 	$query = "SELECT *, date_format(event_cat_stats.date, '%b %e, %Y at %k:%i') AS datef 
 		FROM event_cat_stats NATURAL JOIN events WHERE eventID = ".$eventID;
 
@@ -50,6 +54,7 @@ function work() {
 		$result['errors'][] = QUERY_INVALID;
 	}
 
+	// Admins are shown all purchases on the event
 	if (authAdmin()){
 				
 		$admin_query = 'SELECT * FROM purchases NATURAL JOIN user WHERE eventID = '.$eventID;
