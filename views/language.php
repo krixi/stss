@@ -18,7 +18,7 @@ function getEnglishString($desiredString) {
 	// see config.php for list of all defined strings.
 	switch($desiredString) {
 		case INDEX:
-			return "Index";
+			return "Welcome";
 			break;
 		case EVENTS:
 			return "Events";
@@ -27,7 +27,7 @@ function getEnglishString($desiredString) {
 			return "Login";
 			break;
 		case JOIN:
-			return "Join";
+			return "Signup";
 			break;
 		case ADMIN:
 			return "Admin";
@@ -120,7 +120,7 @@ function getGermanString($desiredString) {
 	// see config.php for list of all defined strings.
 	switch($desiredString) {
 		case INDEX:
-			return "Index";
+			return "Willkommen";
 			break;
 		case EVENTS:
 			return "Veranstaltungen";
