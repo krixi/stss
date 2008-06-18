@@ -20,9 +20,9 @@ function work() {
 		
 		require_once('includes/CreditCard.php');
 		
-		//TODO: validate properly
-		//$creditCardValid = Validate_Finance_CreditCard::number($_POST['number'], $_POST['type']);	
-		$creditCardValid = true;
+
+		$creditCardValid = Validate_Finance_CreditCard::number($_POST['number'], $_POST['type']);	
+
 		
 		if($creditCardValid) {
 			$status = 'paid';

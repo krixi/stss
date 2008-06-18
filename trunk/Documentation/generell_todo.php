@@ -31,8 +31,10 @@ ENHANCEMENTS
 -- security (can't forget authentication)
 -- modularisation
 -- ease collaborate work
+- DATABASE
 - normalised Database layout
 - encapsuling buisiness logic in database (via views)
+- using db-user with restricted rights -> counter sql-injection 
 - using sql injection protection by binding or real_escape_string
 - using google analytics :)
 

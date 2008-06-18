@@ -15,7 +15,7 @@ function display($data) {
 
 
 
-	//TODO perhaps display the price to the user for what they bought?
+
 	if(!isset($data['purchase_history'])){
 		echo "<h2>Sie haben noch keine Einkäufe getätigt</h2>\n";
 	}
