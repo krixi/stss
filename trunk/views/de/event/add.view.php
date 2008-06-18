@@ -149,9 +149,12 @@ zeit:
 </td>
 </tr>
 </table>
-<input class="submit" name="reset" id="reset" type="reset" />
-<input class="submit" name="submit" id="submit" type="submit" value="Add"/>
+<input class="submit" name="reset" id="reset" type="reset" value="zur&uuml;cksetzen"/>
+<input class="submit" name="submit" id="submit" type="submit" value="hinzuf&uuml;gen"/>
 </form>
+<p>
+Sie m&uuml;ssen einen Eventnamen und eine mindestanzahl an normalen Sitzpl&auml;tzen angeben.
+</p>
 <?php	
 	}
 	showFooter();

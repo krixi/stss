@@ -151,6 +151,9 @@ time:
 <input class="submit" name="reset" id="reset" type="reset" />
 <input class="submit" name="submit" id="submit" type="submit" value="Add"/>
 </form>
+<p>
+You must specify an event name and number of normal seats at a minimum.
+</p>
 <?php	
 	}
 	showFooter();

@@ -52,7 +52,7 @@ function work() {
 			$result['errors'][] = NAME_INVALID;
 		}
 		
-		if (!($normal>=0) || !($premium>=0)) {
+		if (!($normal>0) || !($premium>=0)) {
 			$result['verified'] = false;
 			$result['errors'][] = SEATS_INVALID;
 		}
@@ -101,8 +101,10 @@ function work() {
 						
 						
 						$sql_addSeats = "INSERT INTO seats (eventID, category, price, amount) 
-							VALUES ('".$row['eventID']."', 'normal', '".$normal_price."', '".$normal."'), 
-								('".$row['eventID']."', 'premium', '".$premium_price."', '".$premium."');";
+							VALUES ('".$row['eventID']."', 'normal', '".$normal_price."', '".$normal."')";
+						if ($premium != '' && $premium > 0) {
+							$sql_addSeats .= ",('".$row['eventID']."', 'premium', '".$premium_price."', '".$premium."');";
+						}
 						
 						if ($db_handle->query($sql_addSeats)) {
 							$result['added'] = true;
