@@ -1,12 +1,21 @@
 <?php
+/*
+ * call if no authentification is necessary
+ */
 function authNO() {
 	return true;
 }
 
+/*
+ * call if authentification is necessary
+ */
 function authUser() {
 	return $_SESSION['login'];
 }
 
+/*
+ * call if authentification as admin is necessary
+ */
 function authAdmin() {
 	return ($_SESSION['login'] && $_SESSION['admin']);
 }
@@ -34,7 +43,6 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 		return false;
 	}
 	
-	$digest = sha1($pass);
 		
   
 	if (is_numeric($loginName)) {
@@ -58,7 +66,7 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 		$stmt->bind_result($userID, $userEmail, $isAdmin, $pwdHash, $salt);
 		$stmt->fetch();
 		
-		//&& $pwdHash == sha1($pass.$salt)
+
 		if ($userEmail != '' && $pwdHash == sha1($pass.$salt)) {
 			$setUserID = $userID;
 			$setUserEmail = $userEmail;
@@ -78,6 +86,15 @@ function authenticateUser($loginName, $pass, &$setUserID, &$admin, &$setUserEmai
 	return true;
 }
 
+/*
+ * Generates a random salt of length 40
+ */
+function genSalt(){
+   srand((double)microtime()*1000000);
+  $random = rand();
+  $salt = sha1($random);
+  return($salt);
+} 
 
 /****************************
 function: verify username
@@ -99,23 +116,25 @@ function verifyEmail($email) {
 	return eregi("^[a-z0-9][_a-z0-9-]*(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", $email);
 }
   
+/****************************
+function: verify password
 
+uses regular expressions to verify the user's input.
+returns true if the string matched and false if not.
+****************************/
 function verifyPassword($pass) {
 	return eregi("^[a-z0-9]{6}[a-z0-9]*$", $pass);
 }
 
+/****************************
+function: verify date
+
+uses regular expressions to verify the user's input.
+returns true if the string matched and false if not.
+****************************/
 function verifyDate($date) {
 	return eregi("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{1,2}:[0-9]{2}$", $date);
 }
 
-/*
- * Generates a random salt of length 40
- */
-function genSalt(){
-   srand((double)microtime()*1000000);
-  $random = rand();
-  $salt = sha1($random);
-  return($salt);
-} 
 ?>
 
