@@ -18,8 +18,11 @@ function work() {
 	
 	$result['added'] = false;
 	
-	if (isset($_POST['name']) && 
+	if (isset($_POST['name']) &&
+		isset($_POST['month']) && 
 		isset($_POST['date']) &&
+		isset($_POST['year']) &&
+		isset($_POST['time']) &&
 		isset($_POST['description']) && 
 		isset($_POST['normal']) && 
 		isset($_POST['normal_price']) && 
@@ -31,13 +34,16 @@ function work() {
 		
 		$name = strip_tags($_POST['name']);
 		$name = addslashes($name);
-		$date = strip_tags($_POST['date']);
+		//$date = strip_tags($_POST['date']);
 		$description = strip_tags($_POST['description']);
 		$description = addslashes($description);
 		$normal = strip_tags($_POST['normal']);
 		$normal_price = strip_tags($_POST['normal_price']);
 		$premium = strip_tags($_POST['premium']);
 		$premium_price = strip_tags($_POST['premium_price']);
+		
+		$date_time = $_POST['year']."-".$_POST['month']."-".$_POST['date']." ".$_POST['time'];
+		echo $date_time;
 		
 		if (!is_numeric($normal) || !is_numeric($premium)) {
 			$result['verified'] = false;
@@ -49,7 +55,7 @@ function work() {
 			$result['errors'][] = PRICE_INVALID;
 		}
 		
-		if (!verifyDate($date)) {
+		if (!verifyDate($date_time)) {
 			$result['verified'] = false;
 			$result['errors'][] = DATE_INVALID;
 		}
@@ -77,11 +83,11 @@ function work() {
 		$premium = $db_handle->real_escape_string($premium);
 
 		$sql_addEvent = "INSERT INTO events ( name, date, description )
-					VALUES ( '".$name."', '".$date."', '".$description."');";
+					VALUES ( '".$name."', '".$date_time."', '".$description."');";
 		
 		if ($db_handle->query($sql_addEvent)) {
 			if ($db_handle->affected_rows == 1) {
-				$sql_getEventId = "SELECT eventID FROM events WHERE events.date = '".$date."' AND events.name = '".$name."';";
+				$sql_getEventId = "SELECT eventID FROM events WHERE events.date = '".$date_time."' AND events.name = '".$name."';";
 				
 				if ($sql_result = $db_handle->query($sql_getEventId)) {
 					if ($sql_result->num_rows == 1) {
