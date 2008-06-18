@@ -17,7 +17,6 @@
 
 USER WEAKNESSES
 - auto-login after joining
-- list a login button unter event_details if not logged in -> user is irritated
 - login is text (mousbutton changes)
 - layout of loginfield is irritating (swap username, pwdfield)
 

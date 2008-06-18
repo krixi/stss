@@ -110,6 +110,7 @@ a:hover {
 	margin: 0 2px 0 0;
 	padding: 0;
 	text-transform:uppercase;
+	cursor: pointer;
 }
 
 .menu a{
