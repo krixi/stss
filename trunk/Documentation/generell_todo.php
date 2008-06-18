@@ -12,6 +12,14 @@
 - carts are only stored in session -> users may parallel add more tickets to cart than available
 	(but is cought before purchasing)
 - does not validate (e.g. using loads of ä ü ö in the german part :D
+- Framework: passing results from model to view only in a very loosely defined way (per array)
+- pdfs which are generated fill up filesystem ... autodelete necessary
+
+USER WEAKNESSES
+- auto-login after joining
+- list a login button unter event_details if not logged in -> user is irritated
+- login is text (mousbutton changes)
+- layout of loginfield is irritating (swap username, pwdfield)
 
 
 ENHANCEMENTS
@@ -20,7 +28,13 @@ ENHANCEMENTS
 - admin can add events
 - switch languages
 - FRAMEWORK
-
+-- security (can't forget authentication)
+-- modularisation
+-- ease collaborate work
+- normalised Database layout
+- encapsuling buisiness logic in database (via views)
+- using sql injection protection by binding or real_escape_string
+- using google analytics :)
 
 
 
