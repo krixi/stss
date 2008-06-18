@@ -136,7 +136,7 @@ function display($data) {
 		fclose($fp);
 
 
-		echo "<br>\n".'Rechnung als <a href="'.$fname.'" target="_blank">PDF</a>';
+		echo "<br>".'Rechnung als <a href="'.$fname.'" target="_blank">PDF</a>';
 		//	echo '
 		//<SCRIPT LANGUAGE="JavaScript"><!--
 		//function go_now ()   { window.location.href = "'.$fname.'"; }
