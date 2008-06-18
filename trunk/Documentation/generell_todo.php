@@ -23,10 +23,11 @@ USER WEAKNESSES
 
 
 ENHANCEMENTS
+- using PEAR package Validate_Finance_CreditCard to validate credit card information
 - using random salts to make it more difficult to bruteforce passwords from the hash (e.g. using rainbowtables) 
-- creates pdf of bill
+- creates pdf of bill for user to printout
 - admin can add events
-- switch languages
+- switch languages between english and german (and possibly any other)
 - FRAMEWORK
 -- security (can't forget authentication)
 -- modularisation
