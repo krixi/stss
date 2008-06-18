@@ -9,12 +9,15 @@ function authenticate () {
 	//defined in Framework
 	return authUser();
 }
-
+/*
+ * Does not do much at the time
+ */
 function work() {
 	$result = array();
-	//Do your work and
-	//return $result = array();
-	//with the results
+
+	//Here we could get the supported payment methods
+	//for instance only allow banktransfer a week ahead of event etc.
+
 	return $result;
 }
 

@@ -5,6 +5,9 @@ function authenticate () {
 	return authUser();
 }
 
+/*
+ * Prepares the Data to be displayed in the cart-view
+ */
 function work() {
 	$result = array();
 	

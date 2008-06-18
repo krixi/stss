@@ -5,6 +5,9 @@ function authenticate () {
 	return authAdmin();
 }
 
+/*
+ * returns a array of all events ever (not only upcoming)
+ */
 function work() {
 	$result = array();
 

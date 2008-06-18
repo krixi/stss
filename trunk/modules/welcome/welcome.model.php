@@ -6,6 +6,9 @@ function authenticate () {
 	return authNO();
 }
 
+/*
+ * returns login state and user information if logged in
+ */
 function work() {
 
 	$result = array();

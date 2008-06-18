@@ -10,6 +10,10 @@ function authenticate () {
 	//defined in Framework
 }
 
+/*
+ * returns the statistics overall, event, event-category
+ * orders statistics of event by selected column
+ */
 function work() {
 	$result = array();
 	//Do your work and

@@ -8,22 +8,27 @@ function authenticate () {
 	//defined in Framework
 }
 
+/*
+ * commits the purchases from the cart to the database -> real purchase here
+ * but only if there still are enough tickets left (in case of concurrency issues)
+ */
 function work() {
 	$result = array();
 	$status = 'reserved'; //by default if not payed by credit card
 	$payment = 'banktransfer'; //default payment method
 
 	//Find out if payment is through credit-card or other method
+	//and if creditcard - validate the input number against card-type (e.g. VISA ...)
 	if (isset($_POST['cardholder'])
 	&& isset($_POST['number'])
 	&& isset($_POST['type'])) {
-		
+
 		require_once('includes/CreditCard.php');
-		
 
-		$creditCardValid = Validate_Finance_CreditCard::number($_POST['number'], $_POST['type']);	
 
-		
+		$creditCardValid = Validate_Finance_CreditCard::number($_POST['number'], $_POST['type']);
+
+
 		if($creditCardValid) {
 			$status = 'paid';
 			$payment = 'creditCard';
@@ -40,9 +45,6 @@ function work() {
 	// Expecting an array named 'cart' filled with single purchases as eventid, name, category,
 	// price and number of tickets in the session
 	$purchases = $_SESSION['cart'];
-	//clear shoppingcart
-	$_SESSION['cart'] = array();
-	$oldCart = array();
 
 
 	//Connect to database
@@ -59,7 +61,10 @@ function work() {
 		}
 	}
 
-	
+	//clear shoppingcart
+	$_SESSION['cart'] = array();
+	$oldCart = array();
+
 	$totalPayment = 0; //use this as credit-card payment
 
 	foreach ($purchases AS $purchase) {
@@ -110,7 +115,7 @@ function work() {
 			else {
 				$highestSeatID = 1;
 			}
-				
+
 			//get current datetime from server
 			$datetime = date("Y-m-d H:i:s");
 
@@ -123,7 +128,7 @@ function work() {
 				$db_handle->query($sql_insert_query);
 
 				$purchase['seats'][] = $newSeat;
-				
+
 				$totalPayment += $categoryPrice;
 
 
@@ -144,8 +149,8 @@ function work() {
 
 
 	$db_handle->close();
-	
-	
+
+
 	/*
 	 * CREDIT CARD PAYMENT
 	 * Connect here to a payment Portal and charge the user

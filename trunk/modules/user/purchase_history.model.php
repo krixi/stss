@@ -9,6 +9,9 @@ function authenticate () {
 	//defined in Framework
 }
 
+/*
+ * returns all purchases to a given userID ($_SESSION variable)
+ */
 function work() {
 	$result = array();
 	//Do your work and

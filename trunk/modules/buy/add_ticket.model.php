@@ -9,6 +9,9 @@ function authenticate () {
 	//defined in Framework
 }
 
+/*
+ * Adds Tickets to the cart
+ */
 function work() {
 	$result = array();
 	

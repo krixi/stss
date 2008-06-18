@@ -10,6 +10,9 @@ function authenticate () {
 	return authAdmin();
 }
 
+/*
+ * Adds a new Event to the Database
+ */
 function work() {
 	$result = array();
 	//Do your work and
@@ -32,6 +35,7 @@ function work() {
 		$result['errors'] = array();
 		$result['verified'] = true;
 		
+		//validating the input
 		$name = strip_tags($_POST['name']);
 		$name = addslashes($name);
 		$description = strip_tags($_POST['description']);
@@ -74,7 +78,6 @@ function work() {
 		//using sql-injection protection
 		$date_time = $db_handle->real_escape_string($date_time);
 		$name = $db_handle->real_escape_string($name);
-		//$row['eventID'] = $db_handle->real_escape_string($row['eventID']);
 		$normal_price = $db_handle->real_escape_string($normal_price);
 		$premium_price = $db_handle->real_escape_string($premium_price);
 		$normal = $db_handle->real_escape_string($normal);
