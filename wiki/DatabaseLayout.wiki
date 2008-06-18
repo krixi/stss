@@ -1,6 +1,10 @@
 Fixed the Views
 
 {{{
+-- Web user with restricted rights
+CREATE USER 'web'@'localhost' IDENTIFIED BY 'test';
+GRANT SELECT,INSERT ON *.* TO 'web'@'localhost';
+
 CREATE TABLE `events` (
   `eventID` int(11) NOT NULL auto_increment,
   `name` varchar(40) NOT NULL,
