@@ -51,8 +51,8 @@ define('BASE_PATH',$base_path);
 
 // Database connection info.
 define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASS", "admin");
+define("DB_USER", "web");
+define("DB_PASS", "test");
 define("DB_NAME", "stss");
 
 // Defaults for adding a new event
