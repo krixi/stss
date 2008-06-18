@@ -17,7 +17,6 @@
 
 USER WEAKNESSES
 - auto-login after joining
-- login is text (mousbutton changes)
 - layout of loginfield is irritating (swap username, pwdfield)
 
 
