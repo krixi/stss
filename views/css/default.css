@@ -161,6 +161,10 @@ a:hover {
 	float:right;
 }
 
+.add_event {
+	width: 790px;	
+}
+
 .textinput{
 	border: 1px solid #737A80;
 	float:right;
@@ -208,6 +212,9 @@ a.button:hover {
 }
 
 /* format database querys */
+.db_display {
+	width: 790px;	
+}
 .db_display td {
 	padding: 5px 25px 3px 2px;	
 	margin: 0px 0px 0px 0px;
