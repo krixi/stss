@@ -1,6 +1,5 @@
 <?php
 
-
 function authenticate () {
   //implement your own or call either
   //authNO();
@@ -16,6 +15,5 @@ function work() {
   //with the results
   return $result;
 }
-
 
 ?>

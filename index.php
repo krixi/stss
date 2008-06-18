@@ -24,6 +24,7 @@ if (!isset($_SESSION['login'])) {
 	initSession();
 }
 
+//Resolved the required module and action
 if (isset($_GET['module'])) {
 	$module = $_GET['module'];
 	if (isset($_GET['action'])) {
