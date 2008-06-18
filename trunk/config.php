@@ -8,6 +8,7 @@
 */
 // Set to true for debugging
 define("DEBUG", false);
+error_reporting(0);
 
 
 // Timeout in minutes

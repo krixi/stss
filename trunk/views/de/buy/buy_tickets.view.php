@@ -14,11 +14,11 @@ function display($data) {
 	}
 
 
-	if (count($data['oldCart'])>0) {
+	if (isset($data['oldCart']) && count($data['oldCart'])>0) {
 
-		echo "<h2>Bisher gekaufte Tickets</h2>";
+		echo "<h1>Bisher gekaufte Tickets</h1>";
 
-		echo "<table>
+		echo "<table class=\"db_display\">
 
 	<tr>
 		<th>Veranstaltung</th>

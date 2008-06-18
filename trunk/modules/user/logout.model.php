@@ -21,6 +21,7 @@ function work() {
 	
 	session_start();
 	session_regenerate_id();
+	initSession();
 	
 	$_SESSION['lang'] = $result['lang'];
 	$result['newID'] = session_id();

@@ -14,16 +14,16 @@ function display($data) {
 	}
 
 
-	if (count($data['oldCart'])>0) {
+	if (isset($data['oldCart']) && count($data['oldCart'])>0) {
 
-		echo "<h2>Purchased Tickets</h2>";
+		echo "<h1>Purchased Tickets</h1>";
 
-		echo "<table>
+		echo "<table class=\"db_display\">
 
 	<tr>
 		<th>Event&nbsp;name</th>
 		<th>Seat&nbsp;category</th>
-		<th>Ammount</th>
+		<th>Amount</th>
 		<th>Price</th>
 		<th>Status</th>
 		<th>Total</th>
@@ -116,7 +116,7 @@ function display($data) {
 
 		}
 		elseif ($data['payment'] == 'creditCard') {
-			$doc->ezText("Thankyou for Paying by Credit Card", 10);
+			$doc->ezText("Thank you for Paying by Credit Card", 10);
 		}
 
 
@@ -137,15 +137,6 @@ function display($data) {
 
 
 		echo '<br>Bill as <a href="'.$fname.'" target="_blank">PDF</a>';
-		//	echo '
-		//<SCRIPT LANGUAGE="JavaScript"><!--
-		//function go_now ()   { window.location.href = "'.$fname.'"; }
-		////--></SCRIPT>
-		//
-		//<!--<body onLoad="go_now()"; >-->
-		//<a href="'.$fname.'" target="_blank">click here</a> if you are not re-directed.
-		//
-		//';
 
 	}
 
