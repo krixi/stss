@@ -47,12 +47,17 @@ function work() {
 		
 		$date_time = $_POST['year']."-".$_POST['month']."-".$_POST['date']." ".$_POST['time'];
 		
-		if (!is_numeric($normal) || !is_numeric($premium)) {
+		if (!strlen($name)) {
+			$result['verified'] = false;
+			$result['errors'][] = NAME_INVALID;
+		}
+		
+		if (!($normal>=0) || !($premium>=0)) {
 			$result['verified'] = false;
 			$result['errors'][] = SEATS_INVALID;
 		}
 		
-		if (!is_numeric($normal_price) || !is_numeric($premium_price)) {
+		if (!($normal_price>=0) || !($premium_price>=0)) {
 			$result['verified'] = false;
 			$result['errors'][] = PRICE_INVALID;
 		}
@@ -121,6 +126,7 @@ function work() {
 	}
 	return $result;
 }
+
 
 
 ?>
