@@ -107,6 +107,9 @@ function getEnglishString($desiredString) {
 		case CREDITCARD_INVALID:
 			return "Your Credit Card Information is not valid!";
 			break;
+		case NAME_INVALID:
+			return "Please specify a Event Name";
+			break;
 		default:
 			return "IMPLEMENT ME: ".$desiredString;
 			break;
@@ -205,6 +208,9 @@ function getGermanString($desiredString) {
 			break;
 		case CREDITCARD_INVALID:
 			return "Ihre Kreditkartendaten sind nicht gültig!";
+			break;
+		case NAME_INVALID:
+			return "Bitte geben Sie einen Eventnamen an!";
 			break;
 		default:
 			return "IMPLEMENTIERE MICH: ".$desiredString;

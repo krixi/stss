@@ -96,4 +96,5 @@ define("NOT_ENOUGH_SEATS", 25);
 define("CART_EMPTY", 26);
 define("MISSING_EVENTID", 28);
 define("CREDITCARD_INVALID", 30);
+define("NAME_INVALID", 31);
 ?>
